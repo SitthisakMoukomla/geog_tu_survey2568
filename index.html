@@ -1,0 +1,484 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>แบบสอบถามการประเมินหลักสูตรสำหรับผู้ใช้บัณฑิต</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Sarabun:wght@400;500;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Sarabun', sans-serif;
+        }
+        /* Custom styles for better form elements */
+        .form-radio {
+            -webkit-appearance: none;
+            -moz-appearance: none;
+            appearance: none;
+            border-radius: 50%;
+            width: 1.25rem;
+            height: 1.25rem;
+            border: 2px solid #d1d5db;
+            transition: 0.2s all linear;
+            margin-right: 0.5rem;
+            position: relative;
+            top: 4px;
+        }
+        .form-radio:checked {
+            border: 6px solid #4f46e5;
+        }
+        .form-checkbox {
+            -webkit-appearance: none;
+            -moz-appearance: none;
+            appearance: none;
+            border-radius: 0.25rem;
+            width: 1.25rem;
+            height: 1.25rem;
+            border: 2px solid #d1d5db;
+            transition: 0.2s all linear;
+            margin-right: 0.5rem;
+            position: relative;
+            top: 4px;
+        }
+        .form-checkbox:checked {
+            background-color: #4f46e5;
+            background-image: url("data:image/svg+xml,%3csvg viewBox='0 0 16 16' fill='white' xmlns='http://www.w3.org/2000/svg'%3e%3cpath d='M12.207 4.793a1 1 0 010 1.414l-5 5a1 1 0 01-1.414 0l-2-2a1 1 0 011.414-1.414L6.5 9.086l4.293-4.293a1 1 0 011.414 0z'/%3e%3c/svg%3e");
+        }
+        .rating-table-row {
+            display: grid;
+            grid-template-columns: 3fr 2fr;
+            gap: 1rem;
+            align-items: center;
+            padding: 0.75rem 0;
+            border-bottom: 1px solid #e5e7eb;
+        }
+        .rating-table-row:last-child {
+            border-bottom: none;
+        }
+        .section-subheader {
+            font-size: 1.125rem; /* text-lg */
+            font-weight: 600; /* font-semibold */
+            background-color: #f3f4f6; /* bg-gray-100 */
+            padding: 0.75rem; /* p-3 */
+            margin-top: 1.5rem; /* mt-6 */
+            border-radius: 0.5rem; /* rounded-lg */
+        }
+        @media (max-width: 640px) {
+            .rating-table-row {
+                grid-template-columns: 1fr;
+                gap: 0.5rem;
+            }
+        }
+    </style>
+</head>
+<body class="bg-gray-100 text-gray-800">
+
+    <div class="container mx-auto p-4 sm:p-8 max-w-4xl">
+        <div class="bg-white rounded-2xl shadow-lg p-6 sm:p-10">
+            
+            <div class="text-center mb-8">
+                <h1 class="text-2xl sm:text-3xl font-bold text-indigo-700">แบบสอบถามการประเมินหลักสูตรศิลปศาสตรบัณฑิต</h1>
+                <p class="text-gray-600 mt-2">ภาควิชาภูมิศาสตร์ สำหรับผู้ใช้บัณฑิต</p>
+            </div>
+
+            <!-- Progress Bar -->
+            <div class="w-full bg-gray-200 rounded-full h-2.5 mb-8">
+                <div id="progress-bar" class="bg-indigo-600 h-2.5 rounded-full" style="width: 14%"></div>
+            </div>
+
+            <form id="surveyForm">
+                <!-- ส่วนที่ 1 -->
+                <div id="part1" class="space-y-6 survey-part">
+                    <h2 class="text-xl font-bold border-b-2 border-indigo-200 pb-2">ตอนที่ 1: ข้อมูลทั่วไปของผู้ตอบแบบสอบถาม</h2>
+                    
+                    <div>
+                        <label class="font-semibold">1. เพศ</label>
+                        <div class="flex items-center space-x-4 mt-2"><label><input type="radio" name="gender" value="male" class="form-radio"> ชาย</label><label><input type="radio" name="gender" value="female" class="form-radio"> หญิง</label></div>
+                    </div>
+
+                    <div>
+                        <label for="age" class="font-semibold">2. ปัจจุบันท่านมีอายุ</label>
+                        <input type="number" id="age" name="age" class="mt-2 w-full p-2 border border-gray-300 rounded-md">
+                    </div>
+
+                    <div>
+                        <label class="font-semibold">3. การศึกษาขั้นสูงสุด</label>
+                        <div class="grid sm:grid-cols-2 gap-2 mt-2"><label><input type="radio" name="education" value="bachelor" class="form-radio"> ปริญญาตรี</label><label><input type="radio" name="education" value="master" class="form-radio"> ปริญญาโท</label><label><input type="radio" name="education" value="doctorate" class="form-radio"> ปริญญาเอก</label><label><input type="radio" name="education" value="other" class="form-radio"> อื่นๆ <input type="text" name="education_other" class="ml-2 p-1 border-b" placeholder="ระบุ"></label></div>
+                    </div>
+                    
+                    <div>
+                        <label class="font-semibold">4. ชื่อและที่ตั้งหน่วยงานของท่าน</label>
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mt-2">
+                            <input type="text" name="organization_name" placeholder="ชื่อหน่วยงาน" class="sm:col-span-2 p-2 border rounded-md">
+                            <input type="text" name="organization_department" placeholder="กอง/สำนัก/ส่วนงาน" class="sm:col-span-2 p-2 border rounded-md">
+                            <input type="text" name="address_no" placeholder="เลขที่" class="p-2 border rounded-md">
+                            <input type="text" name="address_soi" placeholder="ซอย" class="p-2 border rounded-md">
+                            <input type="text" name="address_road" placeholder="ถนน" class="p-2 border rounded-md">
+                            <input type="text" name="address_subdistrict" placeholder="แขวง/ตำบล" class="p-2 border rounded-md">
+                            <input type="text" name="address_district" placeholder="เขต/อำเภอ" class="p-2 border rounded-md">
+                            <input type="text" name="address_province" placeholder="จังหวัด" class="p-2 border rounded-md">
+                            <input type="text" name="address_zip" placeholder="รหัสไปรษณีย์" class="p-2 border rounded-md">
+                            <input type="tel" name="address_phone" placeholder="โทร" class="p-2 border rounded-md">
+                            <input type="tel" name="address_mobile" placeholder="โทรศัพท์เคลื่อนที่" class="p-2 border rounded-md">
+                            <input type="email" name="address_email" placeholder="e-mail address" class="sm:col-span-2 p-2 border rounded-md">
+                        </div>
+                    </div>
+
+                    <div><label for="position" class="font-semibold">5. ปัจจุบันท่านดำรงตำแหน่ง</label><input type="text" id="position" name="position" class="mt-2 w-full p-2 border rounded-md"></div>
+                    
+                    <div>
+                        <label class="font-semibold">6. ประสบการณ์การทำงานของท่านในตำแหน่งปัจจุบัน</label>
+                        <div class="flex items-center space-x-2 mt-2"><input type="number" name="experience_year" class="w-20 p-2 border rounded-md" placeholder="ปี"><span>ปี</span><input type="number" name="experience_month" class="w-20 p-2 border rounded-md" placeholder="เดือน"><span>เดือน</span></div>
+                    </div>
+                    
+                    <div>
+                        <label class="font-semibold">7. ประเภทของหน่วยงานที่ท่านทำงานอยู่</label>
+                        <div class="grid sm:grid-cols-3 gap-2 mt-2"><label><input type="radio" name="org_type" value="gov" class="form-radio"> รัฐบาล</label><label><input type="radio" name="org_type" value="se" class="form-radio"> รัฐวิสาหกิจ</label><label><input type="radio" name="org_type" value="ngo" class="form-radio"> องค์กรอิสระ / มูลนิธิ</label><label><input type="radio" name="org_type" value="private" class="form-radio"> เอกชน</label><label><input type="radio" name="org_type" value="other" class="form-radio"> อื่นๆ<input type="text" name="org_type_other" class="ml-2 p-1 border-b" placeholder="ระบุ"></label></div>
+                    </div>
+
+                    <div>
+                        <label class="font-semibold">8. หน่วยงานของท่านส่วนใหญ่ใช้ความรู้ความสามารถในวิชาการด้านใดที่เกี่ยวกับภูมิศาสตร์</label>
+                        <div class="space-y-2 mt-2"><label class="block"><input type="checkbox" name="geo_knowledge" value="map_reading" class="form-checkbox"> การอ่านแผนที่และการแปลตีความภาพถ่ายทางอากาศ</label><label class="block"><input type="checkbox" name="geo_knowledge" value="photogrammetry" class="form-checkbox"> โฟโตแกรมเมตรี (Photogrammetry)</label><label class="block"><input type="checkbox" name="geo_knowledge" value="remote_sensing" class="form-checkbox"> การสัมผัสจากระยะไกล (Remote Sensing)</label><label class="block"><input type="checkbox" name="geo_knowledge" value="gis" class="form-checkbox"> ระบบสารสนเทศทางภูมิศาสตร์ (GIS)</label><label class="block"><input type="checkbox" name="geo_knowledge" value="gps" class="form-checkbox"> การสำรวจด้วยดาวเทียม (GPS)</label><label class="block"><input type="checkbox" name="geo_knowledge" value="other" class="form-checkbox"> อื่นๆ<input type="text" name="geo_knowledge_other" class="ml-2 p-1 border-b" placeholder="ระบุ"></label></div>
+                    </div>
+                    
+                    <div>
+                        <label class="font-semibold">9. ความเกี่ยวข้องกับบัณฑิต</label>
+                        <div class="grid sm:grid-cols-2 gap-2 mt-2"><label><input type="radio" name="relation_to_grad" value="supervisor_highest" class="form-radio"> ผู้บังคับบัญชาสูงสุดของหน่วยงาน</label><label><input type="radio" name="relation_to_grad" value="supervisor_direct" class="form-radio"> หัวหน้างานของบัณฑิตโดยตรง</label><label><input type="radio" name="relation_to_grad" value="hr" class="form-radio"> เป็นเจ้าหน้าที่ฝ่ายบุคคล</label><label><input type="radio" name="relation_to_grad" value="other" class="form-radio"> อื่นๆ<input type="text" name="relation_to_grad_other" class="ml-2 p-1 border-b" placeholder="ระบุ"></label></div>
+                    </div>
+
+                    <div>
+                        <label class="font-semibold">10. บัณฑิตที่ท่านกำลังประเมิน</label>
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mt-2"><input type="text" name="grad_firstname" placeholder="ชื่อ" class="p-2 border rounded-md"><input type="text" name="grad_lastname" placeholder="นามสกุล" class="p-2 border rounded-md"><input type="text" name="grad_department" placeholder="กอง/สำนัก/ส่วนงาน" class="p-2 border rounded-md"><input type="text" name="grad_position" placeholder="ตำแหน่ง" class="p-2 border rounded-md"></div>
+                    </div>
+
+                    <div>
+                        <label class="font-semibold">11. ระยะเวลาการทำงานของบัณฑิต</label>
+                        <div class="flex items-center space-x-2 mt-2"><input type="number" name="grad_exp_year" class="w-20 p-2 border rounded-md" placeholder="ปี"><span>ปี</span><input type="number" name="grad_exp_month" class="w-20 p-2 border rounded-md" placeholder="เดือน"><span>เดือน</span></div>
+                    </div>
+
+                    <div>
+                        <label class="font-semibold">12. เหตุผลที่ทำให้ท่านเลือกบัณฑิตเข้ามาทำงาน</label>
+                        <div class="space-y-2 mt-2"><label class="block"><input type="checkbox" name="hiring_reason" value="knowledge" class="form-checkbox"> มีความรู้ความสามารถตรงกับงาน</label><label class="block"><input type="checkbox" name="hiring_reason" value="quick_witted" class="form-checkbox"> มีไหวพริบ ปฏิภาณ เฉลียวฉลาด</label><label class="block"><input type="checkbox" name="hiring_reason" value="diligence" class="form-checkbox"> มีความอดทน และขยันขันแข็ง</label><label class="block"><input type="checkbox" name="hiring_reason" value="field_work" class="form-checkbox"> สามารถออกภาคสนามได้</label><label class="block"><input type="checkbox" name="hiring_reason" value="interpersonal" class="form-checkbox"> มีมนุษยสัมพันธ์ดี</label><label class="block"><input type="checkbox" name="hiring_reason" value="computer_skills" class="form-checkbox"> มีความสามารถทางด้านการใช้คอมพิวเตอร์</label><label class="block"><input type="checkbox" name="hiring_reason" value="other" class="form-checkbox"> อื่นๆ<input type="text" name="hiring_reason_other" class="ml-2 p-1 border-b" placeholder="ระบุ"></label></div>
+                    </div>
+                </div>
+
+                <!-- ส่วนที่ 2 -->
+                <div id="part2" class="space-y-6 survey-part hidden">
+                    <h2 class="text-xl font-bold border-b-2 border-indigo-200 pb-2">ตอนที่ 2: ข้อมูลของหลักสูตร</h2>
+                    
+                    <div>
+                        <h3 class="section-subheader">2.1 ท่านมีความคิดเห็นอย่างไรต่อ “ข้อมูลหลักสูตร”</h3>
+                        <div id="course-info-questions"></div>
+                        <label for="course-info-suggestion" class="font-semibold mt-4 block">ข้อเสนอแนะเกี่ยวกับ “รูปแบบของหลักสูตร”</label>
+                        <textarea id="course-info-suggestion" name="course-info-suggestion" rows="3" class="mt-2 w-full p-2 border rounded-md"></textarea>
+                    </div>
+
+                    <div>
+                        <h3 class="section-subheader">2.3 ท่านมีความคิดเห็นอย่างไรต่อ “ปรัชญาและวัตถุประสงค์ของหลักสูตร”</h3>
+                        <div id="philosophy-questions"></div>
+                        <label for="philosophy-suggestion" class="font-semibold mt-4 block">ข้อเสนอแนะเกี่ยวกับ “ปรัชญาและวัตถุประสงค์ของหลักสูตร”</label>
+                        <textarea id="philosophy-suggestion" name="philosophy-suggestion" rows="3" class="mt-2 w-full p-2 border rounded-md"></textarea>
+                    </div>
+                </div>
+                
+                <!-- ส่วนที่ 3 -->
+                <div id="part3" class="space-y-6 survey-part hidden">
+                     <h2 class="text-xl font-bold border-b-2 border-indigo-200 pb-2">ตอนที่ 3: ความคิดเห็นเกี่ยวกับโครงสร้างของหลักสูตรและรายวิชา</h2>
+                     
+                     <div id="structure-questions-container">
+                        <h3 class="section-subheader">3.1 ความคิดเห็นต่อ “หลักสูตร” และ “โครงสร้างหลักสูตร”</h3>
+                        <div id="structure-questions"></div>
+                     </div>
+                     
+                     <div id="gen-ed-courses-container">
+                        <h3 class="section-subheader">3.2 ความคิดเห็นต่อ “วิชาศึกษาทั่วไป” (30 หน่วยกิต)</h3>
+                        <div id="gen-ed-courses-questions"></div>
+                     </div>
+
+                     <div id="major-required-container">
+                        <h3 class="section-subheader">3.3 ความคิดเห็นต่อ “วิชาบังคับ: ในสาขา” (36 หน่วยกิต)</h3>
+                        <div id="major-required-questions"></div>
+                     </div>
+
+                     <div id="major-elective-container">
+                        <h3 class="section-subheader">3.4 ความคิดเห็นต่อ “วิชาบังคับเลือก: ในสาขา” (30 หน่วยกิต)</h3>
+                        <div id="major-elective-questions"></div>
+                     </div>
+
+                     <div id="other-courses-container">
+                        <h3 class="section-subheader">3.5-3.7 ความคิดเห็นต่อวิชาอื่นๆ</h3>
+                        <div id="other-courses-questions"></div>
+                     </div>
+
+                     <div>
+                        <label for="suggestion-add-course" class="font-semibold mt-6 block">3.8.1 ควรเรียนวิชาใดเพิ่มเติม เพราะเหตุผลใด</label>
+                        <textarea id="suggestion-add-course" name="suggestion-add-course" rows="3" class="mt-2 w-full p-2 border rounded-md"></textarea>
+                        
+                        <label for="suggestion-remove-course" class="font-semibold mt-4 block">3.8.2 ควรตัดวิชาใดออกจากหลักสูตร เพราะเหตุผลใด</label>
+                        <textarea id="suggestion-remove-course" name="suggestion-remove-course" rows="3" class="mt-2 w-full p-2 border rounded-md"></textarea>
+
+                        <label for="suggestion-other-course" class="font-semibold mt-4 block">3.8.3 ข้อเสนอแนะอื่นๆ เกี่ยวกับรายวิชา</label>
+                        <textarea id="suggestion-other-course" name="suggestion-other-course" rows="3" class="mt-2 w-full p-2 border rounded-md"></textarea>
+                    </div>
+                </div>
+
+                <!-- ส่วนที่ 4 -->
+                <div id="part4" class="space-y-6 survey-part hidden">
+                    <h2 class="text-xl font-bold border-b-2 border-indigo-200 pb-2">ตอนที่ 4: ความพึงพอใจต่อหลักสูตรในภาพรวม</h2>
+                    <div id="overall-satisfaction-questions"></div>
+                     <div>
+                        <label for="overall-suggestion" class="font-semibold">ข้อเสนอแนะเพิ่มเติมเกี่ยวกับหลักสูตรในภาพรวม</label>
+                        <textarea id="overall-suggestion" name="overall-suggestion" rows="3" class="mt-2 w-full p-2 border rounded-md"></textarea>
+                    </div>
+                </div>
+
+                <!-- ส่วนที่ 5 -->
+                <div id="part5" class="space-y-6 survey-part hidden">
+                    <h2 class="text-xl font-bold border-b-2 border-indigo-200 pb-2">ตอนที่ 5: ความคิดเห็นเกี่ยวกับพฤติกรรมของบัณฑิต</h2>
+                    <div id="behavior-questions"></div>
+                     <div>
+                        <label for="behavior-suggestion" class="font-semibold">ข้อเสนอแนะเพิ่มเติมเกี่ยวกับพฤติกรรมของบัณฑิต</label>
+                        <textarea id="behavior-suggestion" name="behavior-suggestion" rows="3" class="mt-2 w-full p-2 border rounded-md"></textarea>
+                    </div>
+                </div>
+
+                <!-- ส่วนที่ 6 -->
+                <div id="part6" class="space-y-6 survey-part hidden">
+                    <h2 class="text-xl font-bold border-b-2 border-indigo-200 pb-2">ตอนที่ 6: ความพึงพอใจคุณภาพบัณฑิตตามกรอบมาตรฐาน</h2>
+                    <div id="quality-satisfaction-questions"></div>
+                    <div>
+                        <label for="quality-suggestion" class="font-semibold">ข้อเสนอแนะเพิ่มเติม</label>
+                        <textarea id="quality-suggestion" name="quality-suggestion" rows="3" class="mt-2 w-full p-2 border rounded-md"></textarea>
+                    </div>
+                </div>
+
+                <!-- ส่วนที่ 7 -->
+                <div id="part7" class="space-y-6 survey-part hidden">
+                    <h2 class="text-xl font-bold border-b-2 border-indigo-200 pb-2">ตอนที่ 7: ลักษณะของบัณฑิตที่ต้องการ</h2>
+                    <p>กรุณาเลือกลักษณะของบัณฑิตที่ท่านต้องการรับเข้ามาทำงานในองค์กรมากที่สุด เพียง 10 รายการ และเรียงลำดับจาก 1 ถึง 10</p>
+                    <div id="desired-traits" class="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-4"></div>
+                     <div>
+                        <label for="traits-suggestion" class="font-semibold">ข้อเสนอแนะเพิ่มเติมเกี่ยวกับลักษณะของบัณฑิตที่ท่านต้องการ</label>
+                        <textarea id="traits-suggestion" name="traits-suggestion" rows="3" class="mt-2 w-full p-2 border rounded-md"></textarea>
+                    </div>
+                </div>
+                
+                <div id="submissionStatus" class="hidden text-center p-4 my-4 rounded-md"></div>
+                <div id="thankYouMessage" class="hidden text-center p-8">
+                    <svg class="mx-auto h-16 w-16 text-green-500" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
+                    <h2 class="text-2xl font-bold mt-4">ส่งข้อมูลสำเร็จ!</h2>
+                    <p class="text-gray-600 mt-2">ขอขอบพระคุณอย่างสูง เราได้รับข้อมูลของท่านเรียบร้อยแล้ว</p>
+                </div>
+
+                <div id="analysisSection" class="hidden text-left p-6 border-t-2 border-indigo-100 mt-8">
+                    <h3 class="text-xl font-bold text-indigo-700 mb-4">วิเคราะห์ข้อเสนอแนะด้วย AI</h3>
+                    <p class="text-gray-600 mb-4">รวบรวมข้อเสนอแนะทั้งหมดและใช้ Gemini AI เพื่อช่วยสรุปประเด็นสำคัญและเสนอแนวทางการปรับปรุงหลักสูตร</p>
+                    <button type="button" id="analyzeBtn" class="bg-purple-600 hover:bg-purple-700 text-white font-bold py-2 px-6 rounded-lg transition"><span class="mr-2">✨</span> วิเคราะห์และสรุปข้อเสนอแนะ</button>
+                    <div id="loadingIndicator" class="mt-6 text-center hidden"><svg class="animate-spin h-8 w-8 text-indigo-600 mx-auto" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"><circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle><path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path></svg><p class="mt-2 text-gray-600">กำลังวิเคราะห์ข้อมูล...</p></div>
+                    <div id="analysisResult" class="mt-6 p-4 border rounded-lg bg-gray-50 hidden"></div>
+                </div>
+
+                <div class="flex justify-between mt-10">
+                    <button type="button" id="prevBtn" class="bg-gray-300 hover:bg-gray-400 text-gray-800 font-bold py-2 px-6 rounded-lg">ก่อนหน้า</button>
+                    <button type="button" id="nextBtn" class="bg-indigo-600 hover:bg-indigo-700 text-white font-bold py-2 px-6 rounded-lg">ถัดไป</button>
+                    <button type="submit" id="submitBtn" class="bg-green-600 hover:bg-green-700 text-white font-bold py-2 px-6 rounded-lg hidden">ส่งแบบสอบถาม</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        // --- DATA FOR DYNAMIC QUESTIONS ---
+        const courseInfoQuestions = ["เป็นหลักสูตรระดับปริญญาตรี 4 ปี", "ปริญญาที่ได้รับเป็น ศิลปศาสตรบัณฑิต (ภูมิศาสตร์)", "หลักสูตรจัดการศึกษาเป็นภาษาไทย", "เป็นหลักสูตรที่รับนักศึกษาไทย", "เป็นหลักสูตรของสถาบันโดยเฉพาะไม่ได้ร่วมมือกับสถาบันอื่น ๆ", "ให้ปริญญาเพียงสาขาวิชาเดียว", "สถานที่จัดการเรียนการสอน ณ คณะศิลปศาสตร์ มหาวิทยาลัยธรรมศาสตร์ ศูนย์รังสิต"];
+        const philosophyQuestions = {
+            "ปรัชญาหลักสูตร": ["หลักสูตรมีปรัชญาในการผลิตบัณฑิตที่มีความรู้ด้านภูมิศาสตร์และเทคโนโลยีภูมิสารสนเทศ เพื่อประยุกต์ใช้ในการจัดการทรัพยากรธรรมชาติและการวางแผนพัฒนาพื้นที่"],
+            "วัตถุประสงค์ของหลักสูตร": ["มีความรู้ความเข้าใจทางภูมิศาสตร์แขนงต่าง ๆ เป็นอย่างดี", "สามารถนำความรู้และเทคโนโลยีภูมิสารสนเทศไปใช้ในการจัดการทรัพยากรธรรมชาติ และการวางแผนพัฒนาพื้นที่", "สามารถนำความรู้จากการศึกษาภูมิศาสตร์ไปประยุกต์เพื่อประกอบอาชีพและศึกษาต่อ"]
+        };
+        const structureQuestions = ["จำนวนหน่วยกิตรวมตลอดหลักสูตร 138 หน่วยกิต", "ระยะเวลาศึกษา เป็นหลักสูตรแบบศึกษาเต็มเวลา", "นักศึกษาต้องใช้ระยะเวลาการศึกษาตลอดหลักสูตร อย่างน้อย 7 ภาคการศึกษาปกติ", "นักศึกษาต้องใช้ระยะเวลาการศึกษาตลอดหลักสูตร อย่างมากไม่เกิน 14 ภาคการศึกษาปกติ", "นักศึกษาจะต้องจดทะเบียนศึกษารายวิชา รวมไม่น้อยกว่า 138 หน่วยกิต", "นักศึกษาต้องศึกษาวิชาศึกษาทั่วไปจำนวน 30 หน่วยกิต", "นักศึกษาต้องศึกษาวิชาเฉพาะ 102 หน่วยกิต", "นักศึกษาต้องศึกษาวิชาเอกบังคับ (ในสาขา) 66 หน่วยกิต", "นักศึกษาต้องศึกษาวิชาเอกบังคับ (นอกสาขา) 12 หน่วยกิต", "นักศึกษาต้องศึกษาวิชาโทหรือวิชาเลือก 24 หน่วยกิต", "นักศึกษาต้องศึกษาวิชาเลือกเสรี 6 หน่วยกิต"];
+        const generalEducationCourses = {
+            "ส่วนที่ 1: หลักสูตรกลาง (21 หน่วยกิต)": ["มธ.110 สหวิทยาการมนุษยศาสตร์", "มธ.100 พลเมืองกับความรับผิดชอบต่อสังคม", "มธ.120 สหวิทยาการสังคมศาสตร์", "มธ.130 สหวิทยาการวิทยาศาสตร์และเทคโนโลยี", "กลุ่มคณิตศาสตร์/คอมพิวเตอร์ (เลือก 1)", "ท.161 การใช้ภาษาไทย", "กลุ่มภาษาอังกฤษ (สษ.070, 171, 172)"],
+            "ส่วนที่ 2: ของคณะ (9 หน่วยกิต)": ["ท.162 การเขียนรายงานวิชาการ (บังคับ)", "เลือกวิชาศึกษาทั่วไปอื่น ๆ (6 หน่วยกิต)"]
+        };
+        const majorRequiredCourses = {"หมวดวิชาบังคับในสาขา": ["ภม.211 ภูมิศาสตร์กายภาพ", "ภม.221 ภูมิศาสตร์มนุษย์", "ภม.222 ภูมิศาสตร์เศรษฐกิจ", "ภม.223 ภูมิศาสตร์ประเทศไทย", "ภม.231 การอ่านแผนที่และตีความรูปถ่ายทางอากาศ", "ภม.232 ระบบกำหนดตำแหน่งบนโลก", "ภม.311 การอนุรักษ์ทรัพยากรธรรมชาติ", "ภม.321 ภูมิศาสตร์การพัฒนาภูมิภาค", "ภม.331 ระบบแสงในการสำรวจจากระยะไกล", "ภม.332 การทำแผนที่", "ภม.333 ระบบสารสนเทศภูมิศาสตร์ 1", "ภม.441 การวิจัยทางภูมิศาสตร์ 1", "ภม.442 การวิจัยทางภูมิศาสตร์ 2"]};
+        const majorElectiveCourses = {
+            "กลุ่มวิชาภูมิศาสตร์กายภาพ (เลือก 9 หน่วยกิต)": ["ภม.214 ธรณีวิทยาเบื้องต้น", "ภม.215 กาลอากาศและภูมิอากาศ", "ภม.216 ภูมิศาสตร์การเกษตร", "ภม.314 ภูมิศาสตร์ดิน", "ภม.315 อุทกวิทยา", "ภม.316 ภัยธรรมชาติศึกษา"],
+            "กลุ่มวิชาภูมิศาสตร์มนุษย์ (เลือก 6 หน่วยกิต)": ["ภม.224 ภูมิศาสตร์ประชากร", "ภม.225 ภูมิศาสตร์การท่องเที่ยว", "ภม.226 ภูมิศาสตร์เมือง", "ภม.227 ภูมิศาสตร์การเมือง"],
+            "กลุ่มวิชาเทคโนโลยีภูมิสารสนเทศ (เลือก 12 หน่วยกิต)": ["ภม.334 การวิเคราะห์เพื่อตัดสินใจเชิงพื้นที่ฯ", "ภม.335 การประมวลผลภาพถ่ายดาวเทียมเบื้องต้น", "ภม.337 การตีความรูปถ่ายทางอากาศฯ", "ภม.338 ระบบสารสนเทศภูมิศาสตร์ 2", "ภม.434 การทำแผนที่จากภาพถ่ายทางอากาศ", "ภม.435 การสำรวจจากระยะไกลด้วยระบบไมโครเวฟ", "ภม.436 ระบบการจัดการฐานข้อมูล", "ภม.437 การประยุกต์การสำรวจจากระยะไกล"],
+            "กลุ่มวิชาค้นคว้าวิจัยและฝึกงาน (เลือก 3 หน่วยกิต)": ["ภม.344 ฝึกงานทางภูมิศาสตร์ 1", "ภม.345 วิธีการปริมาณวิเคราะห์ทางภูมิศาสตร์", "ภม.346 การวิจัยเชิงคุณภาพทางภูมิศาสตร์"]
+        };
+        const otherCourses = {
+             "วิชาบังคับเลือกนอกสาขา (12 หน่วยกิต)": ["กลุ่มภาษาอังกฤษ (อ.216, อ.221, อ.231)", "กลุ่มสถิติ (ส.216 หรือ ส.218)"],
+             "วิชาโทหรือวิชาเลือก (24 หน่วยกิต)": ["การเลือกเรียนวิชาโท หรือเลือกจากหลายสาขา"],
+             "วิชาเลือกเสรี (6 หน่วยกิต)": ["การเลือกเรียนวิชาใดก็ได้ในมหาวิทยาลัย"]
+        };
+        const overallSatisfactionQuestions = ["เนื้อหาวิชามีความทันสมัยสอดคล้องกับสภาวการณ์ปัจจุบัน", "หลักสูตรตรงกับความต้องการของตลาดแรงงาน", "หมวดวิชาศึกษาทั่วไป สามารถนำไปปรับใช้ในชีวิตประจำวัน", "หมวดวิชาเฉพาะ สามารถนำไปใช้ประโยชน์ในการประกอบอาชีพ", "สัดส่วนของวิชาเลือกเสรี วิชาศึกษาทั่วไป และวิชาเฉพาะมีความเหมาะสม", "หลักสูตรมีการสอนภาคปฏิบัติเพียงพอที่จะทำให้เกิดความรู้สามารถนำไปใช้ประโยชน์ได้", "อื่นๆ (ระบุ)"];
+        const behaviorQuestions = {"ด้านคุณธรรม จริยธรรม": ["มีน้ำใจ ช่วยเหลือเพื่อนร่วมงาน", "มีความขยันหมั่นเพียร อดทนในการทำงาน", "มีความเสียสละเพื่อประโยชน์ของส่วนรวม", "มีความสุภาพ อ่อนน้อมถ่อมตน มีสัมมาคารวะ", "มีการใช้ทรัพยากรของหน่วยงานอย่างคุ้มค่า"], "ด้านความรู้": ["มีความรู้เกี่ยวกับงานที่ทำ", "มีความสามารถในการใช้เครื่องมือและโปรแกรมทางภูมิศาสตร์", "สามารถนำความรู้ที่เรียนมาประยุกต์กับงานที่ทำหรือสถานการณ์ใหม่ๆ", "มีการนำความรู้อื่นที่เกี่ยวข้องมาใช้ในการทำงาน นอกเหนือจากความรู้ที่เรียน"], "ด้านทักษะทางปัญญา": ["มีความคล่องแคล่วในการคิดวิเคราะห์อย่างเป็นระบบ", "เมื่อมีปัญหาในการทำงาน มักจะเสนอแนะและให้เหตุผลเพื่อการตัดสินใจได้", "การแสวงหาความรู้ใหม่ๆ เพื่อพัฒนาตนเอง", "มีการสร้างผลงานใหม่ / พัฒนางานของตนเองอย่างต่อเนื่อง"], "ด้านทักษะความสัมพันธ์ระหว่างบุคคลและความรับผิดชอบ": ["ให้ความร่วมมือในการทำงานเป็นกลุ่ม", "มีการยอมรับและให้เกียรติเพื่อนร่วมงาน", "เมื่อมีปัญหาในการทำงานเป็นกลุ่ม รู้จักการประนีประนอม", "มีความมุ่งมั่นที่จะทำงานให้เสร็จ แม้ว่าจะมีอุปสรรค", "การยอมรับทั้งผิดและชอบจากผลงานของตนเอง"], "ด้านทักษะการวิเคราะห์เชิงตัวเลข การสื่อสาร และการใช้เทคโนโลยีสารสนเทศ": ["มีความคล่องแคล่ว สามารถใช้ตัวเลขในการวิเคราะห์และแปลผล", "สามารถใช้ภาษาต่างประเทศ ทั้งฟัง พูด อ่าน และเขียนได้อย่างเพียงพอต่อการใช้งาน", "สามารถใช้ภาษาไทย ทั้งฟัง พูด อ่าน เขียน ได้ถูกต้องและสร้างสรรค์", "สามารถใช้อุปกรณ์ / เทคโนโลยี / คอมพิวเตอร์ เพื่อแสวงหาความรู้และการสื่อสาร"]};
+        const qualitySatisfactionQuestions = {"ด้านคุณธรรม จริยธรรม": ["มีความซื่อสัตย์สุจริต", "มีน้ำใจต่อเพื่อนร่วมงาน", "มีระเบียบวินัยในการทำงาน", "มีความขยันอดทน", "การตรงต่อเวลา"], "ด้านความรู้": ["มีความรู้ในสาขาวิชาที่เรียน", "มีความสามารถในการวิเคราะห์ข้อมูล", "มีความสามารถในการนำเสนองานที่ทำ", "มีความรู้รอบตัวที่เกี่ยวข้องกับงานที่ทำ"], "ด้านทักษะทางปัญญา": ["มีความสามารถในการเรียนรู้งาน", "ความคิดริเริ่ม สร้างสรรค์ผลงานใหม่", "สามารถใช้ความรู้ที่เรียนมาวิเคราะห์สถานการณ์และแก้ปัญหา", "มีการแสวงหาความรู้ใหม่ๆ เพื่อให้สามารถปฏิบัติงานได้"], "ด้านทักษะความสัมพันธ์ระหว่างบุคคลและความรับผิดชอบ": ["มีความสามารถในการทำงานเป็นกลุ่ม", "มีการแสดงออกซึ่งภาวะผู้นำ", "มีความรับผิดชอบต่องานที่ทำ", "สามารถบริหารจัดการงานที่ทำ"], "ด้านทักษะการวิเคราะห์เชิงตัวเลข การสื่อสาร และการใช้เทคโนโลยีสารสนเทศ": ["มีความสามารถในการวิเคราะห์เชิงตัวเลข", "มีการใช้เทคนิคทางคณิตศาสตร์/สถิติที่เกี่ยวข้องกับงานที่ทำ", "มีทักษะในการสื่อสารและประสานงาน", "มีทักษะทางอุปกรณ์ / เทคโนโลยี / คอมพิวเตอร์"]};
+        const desiredTraits = ["ความซื่อสัตย์สุจริต", "ความมีน้ำใจต่อเพื่อนร่วมงาน", "ความมีระเบียบวินัยในการทำงาน", "ความขยันอดทน", "การตรงต่อเวลา", "ความรู้ในสาขาวิชาที่เรียน", "ความสามารถในการวิเคราะห์ข้อมูล", "ความสามารถในการนำเสนองานที่ทำ", "ความรู้รอบตัวที่เกี่ยวข้องกับงานที่ทำ", "ความสามารถในการเรียนรู้งาน", "ความคิดริเริ่ม สร้างสรรค์ผลงานใหม่", "การใช้ความรู้ที่เรียนมาวิเคราะห์สถานการณ์และแก้ปัญหา", "การแสวงหาความรู้ใหม่ๆ เพื่อให้สามารถปฏิบัติงานได้", "ความสามารถในการทำงานเป็นกลุ่ม", "การแสดงออกซึ่งภาวะผู้นำ", "ความรับผิดชอบต่องานที่ทำ", "การบริหารจัดการงานที่ทำ", "ความสามารถในการวิเคราะห์เชิงตัวเลข", "การใช้เทคนิคทางคณิตศาสตร์/สถิติที่เกี่ยวข้องกับงานที่ทำ", "ทักษะในการสื่อสารและประสานงาน", "ทักษะทางอุปกรณ์ / เทคโนโลยี / คอมพิวเตอร์"];
+        const options3Point = [{ text: 'เลือกคำตอบ', value: '' }, { text: 'เหมาะสม', value: '3' }, { text: 'ควรปรับปรุง', value: '2' }, { text: 'ไม่เหมาะสม', value: '1' }];
+        const options5PointSatisfaction = [{ text: 'เลือกคำตอบ', value: '' }, { text: 'มากที่สุด', value: '5' }, { text: 'มาก', value: '4' }, { text: 'ปานกลาง', value: '3' }, { text: 'น้อย', value: '2' }, { text: 'น้อยที่สุด', value: '1' }];
+        const options5PointBehavior = [{ text: 'เลือกคำตอบ', value: '' }, { text: 'มากที่สุด/บ่อยที่สุด', value: '5' }, { text: 'มาก/บ่อยมาก', value: '4' }, { text: 'ปานกลาง/บ่อย', value: '3' }, { text: 'น้อย/ไม่บ่อย', value: '2' }, { text: 'น้อยมาก/ไม่บ่อยเลย', value: '1' }];
+
+        document.addEventListener('DOMContentLoaded', function() {
+            const scriptURL = 'YOUR_GOOGLE_APPS_SCRIPT_URL_HERE';
+            let currentPart = 1;
+            const totalParts = 7;
+            const parts = document.querySelectorAll('.survey-part');
+            const prevBtn = document.getElementById('prevBtn');
+            const nextBtn = document.getElementById('nextBtn');
+            const submitBtn = document.getElementById('submitBtn');
+            const progressBar = document.getElementById('progress-bar');
+            const form = document.getElementById('surveyForm');
+            const thankYouMessage = document.getElementById('thankYouMessage');
+            const submissionStatus = document.getElementById('submissionStatus');
+            const analysisSection = document.getElementById('analysisSection');
+            const analyzeBtn = document.getElementById('analyzeBtn');
+            const analysisResult = document.getElementById('analysisResult');
+            const loadingIndicator = document.getElementById('loadingIndicator');
+            let allSuggestions = '';
+
+            function createDropdownRow(questionText, name, options) {
+                const row = document.createElement('div');
+                row.className = 'rating-table-row';
+                const questionDiv = document.createElement('div');
+                questionDiv.className = 'question-text';
+                questionDiv.textContent = questionText;
+                row.appendChild(questionDiv);
+                const select = document.createElement('select');
+                select.name = name;
+                select.className = 'w-full p-2 border border-gray-300 rounded-md';
+                options.forEach(opt => {
+                    const option = document.createElement('option');
+                    option.value = opt.value;
+                    option.textContent = opt.text;
+                    select.appendChild(option);
+                });
+                row.appendChild(select);
+                if (questionText.includes("อื่นๆ (ระบุ)")) {
+                    const textInput = document.createElement('input');
+                    textInput.type = 'text';
+                    textInput.name = name + '_other';
+                    textInput.className = 'w-full p-2 border border-gray-300 rounded-md mt-2';
+                    textInput.placeholder = 'ระบุ';
+                    row.appendChild(textInput);
+                }
+                return row;
+            }
+            
+            function createGroupedDropdownRows(containerId, data, options, namePrefix) {
+                const containerEl = document.getElementById(containerId);
+                Object.entries(data).forEach(([group, questions]) => {
+                    const groupHeader = document.createElement('h4');
+                    groupHeader.className = 'text-md font-semibold text-gray-700 mt-4';
+                    groupHeader.textContent = group;
+                    containerEl.appendChild(groupHeader);
+                    questions.forEach((q, index) => {
+                        const name = `${namePrefix}-${group.toLowerCase().replace(/[^a-z0-9]/g, '')}-${index}`;
+                        containerEl.appendChild(createDropdownRow(q, name, options));
+                    });
+                });
+            }
+
+            document.getElementById('course-info-questions').innerHTML = courseInfoQuestions.map((q, i) => createDropdownRow(q, `course-info-${i}`, options3Point).outerHTML).join('');
+            createGroupedDropdownRows('philosophy-questions', philosophyQuestions, options3Point, 'philosophy');
+            document.getElementById('structure-questions').innerHTML = structureQuestions.map((q, i) => createDropdownRow(q, `structure-${i}`, options3Point).outerHTML).join('');
+            createGroupedDropdownRows('gen-ed-courses-questions', generalEducationCourses, options3Point, 'gen-ed');
+            createGroupedDropdownRows('major-required-questions', majorRequiredCourses, options3Point, 'major-req');
+            createGroupedDropdownRows('major-elective-questions', majorElectiveCourses, options3Point, 'major-elec');
+            createGroupedDropdownRows('other-courses-questions', otherCourses, options3Point, 'other-course');
+            document.getElementById('overall-satisfaction-questions').innerHTML = overallSatisfactionQuestions.map((q, i) => createDropdownRow(q, `overall-${i}`, options5PointSatisfaction).outerHTML).join('');
+            createGroupedDropdownRows('behavior-questions', behaviorQuestions, options5PointBehavior, 'behavior');
+            createGroupedDropdownRows('quality-satisfaction-questions', qualitySatisfactionQuestions, options5PointSatisfaction, 'quality');
+            document.getElementById('desired-traits').innerHTML = desiredTraits.map((trait, i) => `<div class="flex items-center"><select name="trait-rank-${i}" class="w-20 p-2 border rounded-md mr-4"><option value="">ลำดับ</option>${[...Array(10)].map((_, j) => `<option value="${j+1}">${j+1}</option>`).join('')}</select><label>${trait}</label></div>`).join('');
+
+            function showPart(partNumber) {
+                parts.forEach(part => part.classList.add('hidden'));
+                document.getElementById(`part${partNumber}`).classList.remove('hidden');
+                updateButtons(partNumber);
+                progressBar.style.width = `${(partNumber / totalParts) * 100}%`;
+            }
+
+            function updateButtons(partNumber) {
+                prevBtn.style.visibility = (partNumber === 1) ? 'hidden' : 'visible';
+                nextBtn.classList.toggle('hidden', partNumber === totalParts);
+                submitBtn.classList.toggle('hidden', partNumber !== totalParts);
+            }
+
+            nextBtn.addEventListener('click', () => { if (currentPart < totalParts) showPart(++currentPart); window.scrollTo(0, 0); });
+            prevBtn.addEventListener('click', () => { if (currentPart > 1) showPart(--currentPart); window.scrollTo(0, 0); });
+            
+            form.addEventListener('submit', (e) => {
+                e.preventDefault();
+                if (scriptURL === 'https://script.google.com/macros/s/AKfycbwzgJrqz21bqq9clhiCx0zn5VJMfdqcAgRtMc7xWT9Mscw4ZmtKWXw0ksPpWhFpdfRYCg/exec') {
+                    submissionStatus.textContent = 'ข้อผิดพลาด: กรุณาใส่ URL ของ Google Apps Script ในโค้ดก่อน';
+                    submissionStatus.className = 'text-center p-4 my-4 rounded-md bg-red-100 text-red-800';
+                    return;
+                }
+                submitBtn.disabled = true;
+                submitBtn.textContent = 'กำลังส่ง...';
+                submitBtn.classList.add('opacity-50');
+                
+                fetch(scriptURL, { method: 'POST', body: new FormData(form)})
+                    .then(response => response.json())
+                    .then(data => {
+                        console.log('Success!', data);
+                        allSuggestions = [...form.querySelectorAll('textarea')].map(ta => ta.value.trim() ? `หัวข้อ: ${document.querySelector(`label[for="${ta.id}"]`)?.textContent || 'ข้อเสนอแนะ'}\nเนื้อหา: ${ta.value.trim()}` : '').filter(Boolean).join('\n\n---\n\n');
+                        parts.forEach(part => part.classList.add('hidden'));
+                        document.querySelector('.flex.justify-between').classList.add('hidden');
+                        document.getElementById('progress-bar').parentElement.classList.add('hidden');
+                        thankYouMessage.classList.remove('hidden');
+                        if (allSuggestions) analysisSection.classList.remove('hidden');
+                        window.scrollTo(0, 0);
+                    })
+                    .catch(error => {
+                        console.error('Error!', error.message);
+                        submissionStatus.textContent = 'เกิดข้อผิดพลาดในการส่งข้อมูล กรุณาตรวจสอบการตั้งค่า Google Sheet และลองใหม่อีกครั้ง';
+                        submissionStatus.className = 'text-center p-4 my-4 rounded-md bg-red-100 text-red-800';
+                        submitBtn.disabled = false;
+                        submitBtn.textContent = 'ส่งแบบสอบถาม';
+                        submitBtn.classList.remove('opacity-50');
+                    });
+            });
+
+            analyzeBtn.addEventListener('click', async () => {
+                loadingIndicator.classList.remove('hidden');
+                analysisResult.classList.add('hidden');
+                analyzeBtn.disabled = true;
+                analyzeBtn.classList.add('opacity-50');
+                const prompt = `คุณคือผู้เชี่ยวชาญด้านการพัฒนาหลักสูตรการศึกษา โปรดวิเคราะห์และสรุปข้อเสนอแนะจากผู้ใช้บัณฑิตสำหรับหลักสูตรภูมิศาสตร์ โดยจัดระเบียบคำตอบตามหัวข้อ: 1. **สรุปประเด็นสำคัญ**, 2. **จุดแข็งของหลักสูตร**, 3. **ประเด็นที่ควรพิจารณาเพื่อการปรับปรุง**, 4. **ข้อเสนอแนะเชิงปฏิบัติ 2-3 ข้อ**. ข้อมูล: --- ${allSuggestions} ---`;
+                try {
+                    const payload = { contents: [{ role: "user", parts: [{ text: prompt }] }] };
+                    const apiKey = "";
+                    const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-preview-05-20:generateContent?key=${apiKey}`;
+                    let response;
+                    for (let i = 0, delay = 1000; i < 5; i++, delay *= 2) {
+                        try {
+                            const res = await fetch(apiUrl, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(payload) });
+                            if (res.ok) { response = res; break; }
+                            if (res.status === 429 || res.status >= 500) await new Promise(r => setTimeout(r, delay));
+                            else throw new Error(`API request failed with status ${res.status}`);
+                        } catch (error) { if (i === 4) throw error; await new Promise(r => setTimeout(r, delay)); }
+                    }
+                    if (!response) throw new Error('API request failed after multiple retries.');
+                    const result = await response.json();
+                    const text = result.candidates?.[0]?.content?.parts?.[0]?.text;
+                    if (text) {
+                        analysisResult.innerHTML = text.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>').replace(/\*/g, '<br> &bull; ').replace(/\n/g, '<br>');
+                    } else { throw new Error('Invalid API response structure.'); }
+                } catch (error) {
+                    console.error('Error calling Gemini API:', error);
+                    analysisResult.innerHTML = `<p class="text-red-500">เกิดข้อผิดพลาดในการเชื่อมต่อกับ AI: ${error.message}</p>`;
+                } finally {
+                    loadingIndicator.classList.add('hidden');
+                    analysisResult.classList.remove('hidden');
+                    analyzeBtn.disabled = false;
+                    analyzeBtn.classList.remove('opacity-50');
+                }
+            });
+            showPart(currentPart);
+        });
+    </script>
+</body>
+</html>
