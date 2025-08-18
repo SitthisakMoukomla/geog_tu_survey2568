@@ -59,6 +59,21 @@
         .rating-table-row:last-child {
             border-bottom: none;
         }
+        .rating-table-header {
+            font-weight: bold;
+            background-color: #f3f4f6;
+            padding: 0.75rem;
+            grid-column: 1 / -1; /* Span all columns */
+            border-bottom: 1px solid #e5e7eb;
+        }
+        .rating-table-info {
+            padding: 0.75rem 1rem;
+            grid-column: 1 / -1; /* Span all columns */
+            font-size: 0.875rem; /* text-sm */
+            color: #4b5563; /* text-gray-600 */
+            border-bottom: 1px solid #e5e7eb;
+            background-color: #f9fafb;
+        }
         .section-subheader {
             font-size: 1.125rem; /* text-lg */
             font-weight: 600; /* font-semibold */
@@ -80,6 +95,9 @@
                 grid-template-columns: 1fr;
                 gap: 0.5rem;
             }
+            .rating-table-header, .rating-table-info {
+                text-align: left;
+            }
         }
     </style>
 </head>
@@ -89,7 +107,7 @@
         <div class="bg-white rounded-2xl shadow-lg p-6 sm:p-10">
             
             <div class="text-center mb-8">
-                <img src="https://i.ibb.co/20gTzPZh/Emblem-of-Thammasat-University-svg.png" alt="Thammasat University Logo" class="mx-auto h-24 w-24 mb-4">
+                <img src="https://i.ibb.co/20gTzPZh/Emblem-of-Thammasat-University-svg.png" alt="Thammasat University Logo" class="mx-auto h-24 w-24 mb-4" onerror="this.onerror=null; this.src='https://placehold.co/96x96/e0e0e0/333?text=TU';">
                 <h1 class="text-xl sm:text-2xl font-bold text-indigo-700">แบบสอบถามการประเมินหลักสูตรวิทยาศาสตรบัณฑิต</h1>
                 <p class="text-lg text-gray-700">สาขาวิชาภูมิศาสตร์และภูมิสารสนเทศ (หลักสูตรปรับปรุง พ.ศ. 2566 และ 2570)</p>
                 <p class="text-gray-600 mt-2">สำหรับผู้ทรงคุณวุฒิ</p>
@@ -133,7 +151,7 @@
                     <div class="bg-blue-50 border-l-4 border-blue-500 text-blue-700 p-4 rounded-md" role="alert">
                         <p class="font-bold">คำแนะนำ</p>
                         <p>โปรดอ่านเอกสาร มคอ.2 ประกอบการตอบคำถามในส่วนนี้</p>
-                        <a href="https://github.com/SitthisakMoukomla/geog_tu_survey2568/blob/main/%E0%B8%A1%E0%B8%84%E0%B8%AD2.%E0%B8%A7%E0%B8%97.%E0%B8%9A.%E0%B8%A0%E0%B8%B9%E0%B8%A1%E0%B8%B4%E0%B8%A8%E0%B8%B2%E0%B8%AA%E0%B8%95%E0%B8%A3%E0%B9%8C%E0%B9%81%E0%B8%A5%E0%B8%B0%E0%B8%A0%E0%B8%B9%E0%B8%A1%E0%B8%B4%E0%B8%AA%E0%B8%B2%E0%B8%A3%E0%B8%AA%E0%B8%99%E0%B9%80%E0%B8%97%E0%B8%A8(%E0%B8%AA%E0%B9%88%E0%B8%87%E0%B8%AD%E0%B8%A7).pdf" target="_blank" class="mt-2 inline-block bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded">
+                        <a href="https://github.com/SitthisakMoukomla/geog_tu_survey2568/blob/main/%E0%B8%A1%E0%B8%84%E0%B8%AD2.%E0%B8%A7%E0%B8%97.%E0%B8%9A.%E0%B8%A0%E0%B8%B9%E0%B8%A1%E0%B8%B4%E0%B8%A8%E0%B8%B2%E0%B8%AA%E0%B8%95%E0%B8%A3%E0%B9%8C%E0%B9%81%E0%B8%A5%E0%B8%B0%E0%B8%A0%E0%B8%B9%E0%B8%A1%E0%B8%B4%E0%B8%AA%E0%B8%B2%E0%B8%A3%E0%B8%AA%E0%B8%99%E0%B9%80%E0%B8%97%E0%B8%A8(%E0%B8%AA%E0%B9%88%E0%B8%87%E0%B8%AD%E0%B8%Aว).pdf" target="_blank" class="mt-2 inline-block bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded">
                             เปิดเอกสาร มคอ.2.วทบ.ภูมิศาสตร์และภูมิสารสนเทศ.pdf
                         </a>
                     </div>
@@ -181,7 +199,7 @@
                 { id: '2.1', title: 'หมวดที่ 1 ข้อมูลทั่วไป [มคอ.2 หน้า 1-3]' },
                 { id: '2.2', title: 'หมวดที่ 2 คุณสมบัติผู้เข้าศึกษาและแผนการรับนักศึกษา [มคอ.2 หน้า 4-5]' },
                 { id: '2.3', title: 'หมวดที่ 3 ปรัชญา วัตถุประสงค์ และผลลัพธ์การเรียนรู้ของหลักสูตร [มคอ.2 หน้า 6-10]' },
-                { id: '2.4', title: 'Custom Section Placeholder' },
+                { id: '2.4', title: 'Custom Section Placeholder' }, // This will be replaced by the tables
                 { id: '2.5', title: 'หมวดที่ 5 การจัดกระบวนการเรียนรู้ [มคอ.2 หน้า 41-44]' },
                 { id: '2.6', title: 'หมวดที่ 6 ความพร้อมและศักยภาพในการบริหารจัดการหลักสูตร [มคอ.2 หน้า 45-48]' },
                 { id: '2.7', title: 'หมวดที่ 7 การประเมินผลการเรียนและเกณฑ์การสำเร็จการศึกษา [มคอ.2 หน้า 49]' },
@@ -189,39 +207,77 @@
                 { id: '2.9', title: 'หมวดที่ 9 ระบบและกลไกในการพัฒนาหลักสูตร [มคอ.2 หน้า 51-57]' }
             ];
 
-            const table241Data = {
-                "วิชาศึกษาทั่วไป (30 หน่วยกิต)": [
-                    { course: "เลือกเรียนให้ครบทั้ง 5 หมวด", credit: "30 หน่วยกิต" },
-                    { course: "1.2.1 สษ.105 ทักษะการสื่อสารทางภาษาอังกฤษ (บังคับ)", credit: "3 (3-0-6)" },
-                    { course: "1.3.1 มธ.151 หรือ 1.3.2 มธ.152 (เลือก 1)", credit: "3" },
-                ],
-                "วิชาเฉพาะ (84 หน่วยกิต)": [
-                    { course: "2.1 วิชาแกนคณะ (รวม)", credit: "12 หน่วยกิต" },
-                    { course: "2.1.1 ท.291 การพัฒนาสมรรถภาพการเขียน", credit: "3 (3-0-6)" },
-                    { course: "2.1.2 อ.211 การฟัง-พูด", credit: "3 (3-0-6)" },
-                    { course: "2.1.3 อ.214 ทักษะการนำเสนอ", credit: "3 (3-0-6)" },
-                    { course: "2.1.4 อ.221 การอ่านและการเขียนเชิงบูรณาการ", credit: "3 (3-0-6)" },
-                    { course: "2.2 วิชาในสาขา (รวม)", credit: "72 หน่วยกิต" },
-                    { course: "2.2.1 วิชาบังคับ (รวม)", credit: "42 หน่วยกิต" },
-                    { course: "1) ภม.111 ภูมิศาสตร์กายภาพ : ธรณีภาคและอุทกภาค", credit: "3 (3-0-6)" },
-                    { course: "2) ภม.112 ภูมิศาสตร์กายภาพ : บรรยากาศภาคและชีวภาค", credit: "3 (3-0-6)" },
-                    { course: "3) ภม.121 ภูมิศาสตร์มนุษย์", credit: "3 (3-0-6)" },
-                    { course: "4) ภม.122 ภูมิศาสตร์ประเทศไทย", credit: "3 (3-0-6)" },
-                    { course: "5) ภม.131 การอ่านแผนที่และการทำแผนที่ดิจิทัล", credit: "3 (3-0-6)" },
-                    { course: "6) ภม.221 ภูมิศาสตร์ภูมิภาคโลก", credit: "3 (3-0-6)" },
-                    { course: "7) ภม.231 ระบบนำทางด้วยดาวเทียมและการสำรวจภาคสนาม", credit: "3 (2-2-5)" },
-                    { course: "8) ภม.232 ระบบสารสนเทศภูมิศาสตร์", credit: "3 (2-3-4)" },
-                    { course: "9) ภม.233 ดิจิทัลโฟโตแกรมเมตรี", credit: "3 (2-3-4)" },
-                    { course: "10) ภม.234 การโปรแกรมพื้นฐานสำหรับนักภูมิศาสตร์", credit: "3 (2-3-4)" },
-                    { course: "11) ภม.331 การสำรวจจากระยะไกลด้วยดาวเทียม", credit: "3 (2-3-4)" },
-                    { course: "12) ภม.341 สถิติเพื่อการวิจัยทางภูมิศาสตร์", credit: "3 (2-3-4)" },
-                    { course: "13) ภม.441 ระเบียบวิธีวิจัยทางภูมิศาสตร์", credit: "3 (3-0-6)" },
-                    { course: "14) ภม.442 การวิจัยทางภูมิศาสตร์เฉพาะบุคคล", credit: "3 (0-4-5)" },
-                    { course: "2.2.2 วิชาบังคับเลือก (รวม)", credit: "30 หน่วยกิต" },
-                ],
-                "วิชาโทหรือวิชาเลือก": [ { course: "รวม", credit: "18 หน่วยกิต" } ],
-                "วิชาเลือกเสรี": [ { course: "รวม", credit: "6 หน่วยกิต" } ]
-            };
+            // Correct and complete data for table 2.4.1 based on the latest Word document
+            const table241Data = [
+                { type: 'header', title: 'วิชาศึกษาทั่วไป (30 หน่วยกิต)' },
+                { course: "เลือกเรียนให้ครบทั้ง 5 หมวด", credit: "30" },
+                { course: "สษ.105 ทักษะการสื่อสารทางภาษาอังกฤษ (บังคับ)", credit: "3 (3-0-6)" },
+                { course: "มธ.151 หรือ มธ.152 (เลือก 1)", credit: "3" },
+
+                { type: 'header', title: 'วิชาเฉพาะ (84 หน่วยกิต)' },
+                { type: 'header', title: 'วิชาแกนคณะ (12 หน่วยกิต)' },
+                { course: "ท.291 การพัฒนาสมรรถภาพการเขียน", credit: "3 (3-0-6)" },
+                { course: "อ.211 การฟัง-พูด", credit: "3 (3-0-6)" },
+                { course: "อ.214 ทักษะการนำเสนอ", credit: "3 (3-0-6)" },
+                { course: "อ.221 การอ่านและการเขียนเชิงบูรณาการ", credit: "3 (3-0-6)" },
+                
+                { type: 'header', title: 'วิชาในสาขา (72 หน่วยกิต)' },
+                { type: 'header', title: 'วิชาบังคับ (42 หน่วยกิต)' },
+                { course: "ภม.111 ภูมิศาสตร์กายภาพ : ธรณีภาคและอุทกภาค", credit: "3 (3-0-6)" },
+                { course: "ภม.112 ภูมิศาสตร์กายภาพ : บรรยากาศภาคและชีวภาค", credit: "3 (3-0-6)" },
+                { course: "ภม.121 ภูมิศาสตร์มนุษย์", credit: "3 (3-0-6)" },
+                { course: "ภม.122 ภูมิศาสตร์ประเทศไทย", credit: "3 (3-0-6)" },
+                { course: "ภม.131 การอ่านแผนที่และการทำแผนที่ดิจิทัล", credit: "3 (3-0-6)" },
+                { course: "ภม.221 ภูมิศาสตร์ภูมิภาคโลก", credit: "3 (3-0-6)" },
+                { course: "ภม.231 ระบบนำทางด้วยดาวเทียมและการสำรวจภาคสนาม", credit: "3 (2-2-5)" },
+                { course: "ภม.232 ระบบสารสนเทศภูมิศาสตร์", credit: "3 (2-3-4)" },
+                { course: "ภม.233 ดิจิทัลโฟโตแกรมเมตรี", credit: "3 (2-3-4)" },
+                { course: "ภม.234 การโปรแกรมพื้นฐานสำหรับนักภูมิศาสตร์", credit: "3 (2-3-4)" },
+                { course: "ภม.331 การสำรวจจากระยะไกลด้วยดาวเทียม", credit: "3 (2-3-4)" },
+                { course: "ภม.341 สถิติเพื่อการวิจัยทางภูมิศาสตร์", credit: "3 (2-3-4)" },
+                { course: "ภม.441 ระเบียบวิธีวิจัยทางภูมิศาสตร์", credit: "3 (3-0-6)" },
+                { course: "ภม.442 การวิจัยทางภูมิศาสตร์เฉพาะบุคคล", credit: "3 (0-4-5)" },
+
+                { type: 'header', title: 'วิชาบังคับเลือก (30 หน่วยกิต)' },
+                { type: 'header', title: 'กลุ่มวิชาภูมิศาสตร์กายภาพ' },
+                { course: "ภม.215 ทรัพยากรธรรมชาติและความยั่งยืน", credit: "3 (3-0-6)" },
+                { course: "ภม.216 ภูมิศาสตร์ทะเลและชายฝั่ง", credit: "3 (3-0-6)" },
+                { course: "ภม.217 ภูมิศาสตร์ดินและการเกษตร", credit: "3 (3-0-6)" },
+                { course: "ภม.218 ลักษณะทางภูมิศาสตร์และแหล่งพลังงานหมุนเวียน", credit: "3 (3-0-6)" },
+                { course: "ภม.315 ภัยธรรมชาติศึกษา", credit: "3 (3-0-6)" },
+                { course: "ภม.316 ภูมิสารสนเทศเพื่อการจัดการการเปลี่ยนแปลงสภาพภูมิอากาศ", credit: "3 (3-0-6)" },
+                
+                { type: 'header', title: 'กลุ่มวิชาภูมิศาสตร์มนุษย์' },
+                { course: "ภม.225 ภูมิศาสตร์ประชากรและการย้ายถิ่น", credit: "3 (3-0-6)" },
+                { course: "ภม.226 ภูมิศาสตร์เศรษฐกิจ", credit: "3 (3-0-6)" },
+                { course: "ภม.227 ภูมิศาสตร์การเมือง", credit: "3 (3-0-6)" },
+                { course: "ภม.228 ภูมิศาสตร์เมือง", credit: "3 (3-0-6)" },
+                { course: "ภม.325 ภูมิศาสตร์การท่องเที่ยว", credit: "3 (3-0-6)" },
+                { course: "ภม.326 ภูมิศาสตร์ในงานสาธารณสุข", credit: "3 (3-0-6)" },
+                { course: "ภม.327 สิ่งบ่งชี้ทางภูมิศาสตร์และการพัฒนาท้องถิ่น", credit: "3 (3-0-6)" },
+                { course: "ภม.425 ภูมิศาสตร์การสื่อสารในยุคดิจิทัล", credit: "3 (3-0-6)" },
+
+                { type: 'header', title: 'กลุ่มวิชาเทคโนโลยีภูมิสารสนเทศ' },
+                { course: "ภม.235 การประยุกต์ระบบสารสนเทศภูมิศาสตร์", credit: "3 (2-3-4)" },
+                { course: "ภม.335 โลจิสติกส์และการเลือกที่ตั้งเชิงธุรกิจ", credit: "3 (2-2-5)" },
+                { course: "ภม.336 การประยุกต์การสำรวจจากระยะไกลด้วยดาวเทียม", credit: "3 (2-3-4)" },
+                { course: "ภม.337 การพัฒนาโปรแกรมเพื่อการวิเคราะห์ข้อมูลเชิงพื้นที่", credit: "3 (2-3-4)" },
+                { course: "ภม.338 วิทยาศาสตร์ข้อมูลทางภูมิศาสตร์", credit: "3 (2-3-4)" },
+                { course: "ภม.339 แบบจำลองเชิงพื้นที่เพื่อการพัฒนาอย่างยั่งยืน", credit: "3 (2-3-4)" },
+                { course: "ภม.435 ไมโครเวฟรีโมทเซนซิง", credit: "3 (2-2-5)" },
+                { course: "ภม.436 ปัญญาประดิษฐ์เพื่อสังคม", credit: "3 (2-3-4)" },
+                { course: "ภม.437 การพัฒนาระบบบริการข้อมูลเชิงพื้นที่ผ่านเครือข่ายอินเทอร์เน็ต", credit: "3 (2-2-5)" },
+
+                { type: 'header', title: 'กลุ่มวิชาวิจัยและฝึกงาน' },
+                { course: "ภม.345 ฝึกงานทางภูมิศาสตร์ (ไม่น้อยกว่า 210 ชั่วโมง ต่อภาคการศึกษา)", credit: "3 (0-9-0)" },
+                
+                { type: 'header', title: 'วิชาโทหรือวิชาเลือก (18 หน่วยกิต)' },
+                { type: 'info', text: '3.1 เลือกศึกษาสาขาวิชาใดสาขาวิชาหนึ่งที่เปิดสอนในมหาวิทยาลัยธรรมศาสตร์เป็นวิชาโท โดยศึกษาตามข้อกำหนดและเงื่อนไขของหลักสูตรวิชาโทในสาขาวิชานั้น ๆ ในกรณีที่นักศึกษาเลือกศึกษาวิชาโทของหลักสูตรอื่น ๆ ที่มีโครงสร้าง 15 หน่วยกิต นักศึกษาต้องเรียนวิชาใดก็ได้เพิ่มอีก 3 หน่วยกิตเพื่อให้ครบโครงสร้าง 18 หน่วยกิตตามที่หลักสูตรกำหนด หรือ' },
+                { type: 'info', text: '3.2 เลือกศึกษาจากวิชาของสาขาวิชาใดก็ได้ที่เปิดสอนในมหาวิทยาลัยธรรมศาสตร์ รวมไม่เกิน 4 คณะ ไม่น้อยกว่า 18 หน่วยกิต ทั้งนี้ นักศึกษาไม่สามารถนำรายวิชาในหลักสูตรวิชาศึกษาทั่วไปฉบับ พ.ศ. 2566 ที่เป็นรหัสระดับ 100 ไปนับเป็นวิชาโทหรือวิชาเลือก' },
+
+                { type: 'header', title: 'วิชาเลือกเสรี (6 หน่วยกิต)' },
+                { type: 'info', text: 'เลือกศึกษาวิชาใดก็ได้ที่เปิดสอนในมหาวิทยาลัยธรรมศาสตร์เป็นวิชาเลือกเสรีจำนวนอย่างน้อย 6 หน่วยกิต ยกเว้น รายวิชาในหลักสูตรวิชาศึกษาทั่วไปฉบับ พ.ศ. 2566 ที่เป็นรหัสระดับ 100 ไปนับเป็นวิชาเลือกเสรี' }
+            ];
             
             const table242Data = {
                 "วิชาศึกษาทั่วไป": ["จำนวนหน่วยกิตรวม 30 หน่วยกิต", "เนื้อหาวิชามีความทันสมัย", "เนื้อหาวิชาสามารถนำไปปรับใช้ในชีวิตประจำวัน", "เนื้อหาวิชาสนับสนุนจุดมุ่งหมายของหลักสูตร"],
@@ -292,10 +348,13 @@
             const table241Container = document.getElementById('table-241-container');
             if (table241Container) {
                 let table241Html = `<div class="border rounded-lg overflow-hidden"><div class="rating-table-row font-bold bg-gray-50"><div class="pl-2">ประเด็น</div><div>หน่วยกิต</div><div>ระดับความคิดเห็น</div></div>`;
-                Object.entries(table241Data).forEach(([group, courses]) => {
-                    table241Html += `<div class="font-bold bg-gray-100 p-2 col-span-3">${group}</div>`;
-                    courses.forEach((item, index) => {
-                        const name = `table241_${group.replace(/[^a-zA-Z0-9]/g, '')}_${index}`;
+                table241Data.forEach((item, index) => {
+                    if (item.type === 'header') {
+                        table241Html += `<div class="rating-table-header">${item.title}</div>`;
+                    } else if (item.type === 'info') {
+                        table241Html += `<div class="rating-table-info">${item.text}</div>`;
+                    } else {
+                        const name = `table241_item_${index}`;
                         table241Html += `
                             <div class="rating-table-row">
                                 <div class="pl-4">${item.course}</div>
@@ -306,7 +365,7 @@
                                     </select>
                                 </div>
                             </div>`;
-                    });
+                    }
                 });
                 table241Container.innerHTML = table241Html + `</div>`;
             }
@@ -362,9 +421,10 @@
             
             form.addEventListener('submit', (e) => {
                 e.preventDefault();
-                if (scriptURL === 'https://script.google.com/macros/s/AKfycbyoPmWadvLxFBc-ZktWPIDlGUEh7_a_klJwNErOt5cAcfRRshHEfGlQESE2JpmGQA-J1A/exec') {
+                if (scriptURL === 'YOUR_GOOGLE_APPS_SCRIPT_URL_HERE') {
                     submissionStatus.textContent = 'ข้อผิดพลาด: กรุณาใส่ URL ของ Google Apps Script ในโค้ดก่อน';
                     submissionStatus.className = 'text-center p-4 my-4 rounded-md bg-red-100 text-red-800';
+                    submissionStatus.classList.remove('hidden');
                     return;
                 }
                 submitBtn.disabled = true;
@@ -387,6 +447,7 @@
                         console.error('Error!', error.message);
                         submissionStatus.textContent = 'เกิดข้อผิดพลาดในการส่งข้อมูล กรุณาตรวจสอบการตั้งค่า Google Sheet และลองใหม่อีกครั้ง';
                         submissionStatus.className = 'text-center p-4 my-4 rounded-md bg-red-100 text-red-800';
+                        submissionStatus.classList.remove('hidden');
                         submitBtn.disabled = false;
                         submitBtn.textContent = 'ส่งแบบสอบถาม';
                         submitBtn.classList.remove('opacity-50');
