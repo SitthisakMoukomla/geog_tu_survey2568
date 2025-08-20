@@ -358,7 +358,7 @@
                             <h3 class="section-subheader">${q.id} ${q.title}</h3>
                             <div class="flex items-center space-x-4 mt-2">
                                 <label><input type="radio" name="suggestion_type_${q.id}" value="no_suggestion" class="form-radio" checked> ไม่มีประเด็นเสนอแนะ</label>
-                                <label><input type="radio" name="suggestion_type_${q.id}" value="has_suggestion" class="form-radio"> มีประเด็นเสนอแนะ</label>
+                                <label><input type="radio" name="suggestion_type_${q.id}" value="has_suggestion" class="form-radio"> มีประเด็นเสนอแนะ (หากมีรายวิชาที่ท่านเลือกว่าปรับปรุง โปรดระบุว่า ปรับปรุงอย่างไร) </label>
                             </div>
                             <div class="suggestion-box">
                                 <textarea name="suggestion_text_${q.id}" rows="3" class="w-full p-2 border rounded-md"></textarea>
@@ -444,7 +444,7 @@
             
             form.addEventListener('submit', (e) => {
                 e.preventDefault();
-                if (scriptURL === 'YOUR_GOOGLE_APPS_SCRIPT_URL_HERE') {
+                if (scriptURL === 'https://script.google.com/macros/s/AKfycbyARf1PsDzl3qqUpxGwB6XihNhx00U4vVg_e9g80LNEf5Aj_WKYw4Zrav2arQcgpVukqQ/exec') {
                     submissionStatus.textContent = 'ข้อผิดพลาด: กรุณาใส่ URL ของ Google Apps Script ในโค้ดก่อน';
                     submissionStatus.className = 'text-center p-4 my-4 rounded-md bg-red-100 text-red-800';
                     submissionStatus.classList.remove('hidden');
