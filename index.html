@@ -444,7 +444,7 @@
             
             form.addEventListener('submit', (e) => {
                 e.preventDefault();
-                if (scriptURL === 'https://script.google.com/macros/s/AKfycbyhdPUtw-5hFq3WnCPb1z44AD45IJrb7fEHe94Xenw25bFZOJ51Dz93U7AY30P_i6WGTQ/exec') {
+                if (scriptURL === '') {
                     submissionStatus.textContent = 'ข้อผิดพลาด: กรุณาใส่ URL ของ Google Apps Script ในโค้ดก่อน';
                     submissionStatus.className = 'text-center p-4 my-4 rounded-md bg-red-100 text-red-800';
                     submissionStatus.classList.remove('hidden');
