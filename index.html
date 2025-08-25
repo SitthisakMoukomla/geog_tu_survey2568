@@ -113,7 +113,6 @@
                 <p class="text-gray-600 mt-2">สำหรับผู้ทรงคุณวุฒิ</p>
             </div>
 
-            <!-- คำชี้แจง -->
             <div class="mt-8 mb-8 p-6 bg-gray-50 rounded-lg border border-gray-200 text-left text-gray-700">
                 <h2 class="text-lg font-semibold mb-4 text-indigo-700">คำชี้แจง</h2>
                 <p class="mb-4">
@@ -136,13 +135,11 @@
                 </div>
             </div>
 
-            <!-- Progress Bar -->
             <div class="w-full bg-gray-200 rounded-full h-2.5 mb-10">
                 <div id="progress-bar" class="bg-indigo-600 h-2.5 rounded-full transition-all duration-500" style="width: 33%"></div>
             </div>
 
             <form id="surveyForm">
-                <!-- ส่วนที่ 1 -->
                 <div id="part1" class="space-y-6 survey-part">
                     <h2 class="text-xl font-bold border-b-2 border-indigo-200 pb-2">ส่วนที่ 1: ข้อมูลของผู้ตอบแบบสอบถาม</h2>
                     
@@ -168,7 +165,6 @@
                     <div><label class="font-semibold">9. หน่วยงานของท่านส่วนใหญ่ใช้ความรู้ความสามารถในวิชาการด้านใดที่เกี่ยวกับภูมิศาสตร์</label><div class="space-y-2 mt-2"><label class="block"><input type="checkbox" name="geo_knowledge" value="map_reading" class="form-checkbox"> การอ่านแผนที่และการแปลตีความภาพถ่ายทางอากาศ</label><label class="block"><input type="checkbox" name="geo_knowledge" value="photogrammetry" class="form-checkbox"> โฟโตแกรมเมตรี</label><label class="block"><input type="checkbox" name="geo_knowledge" value="remote_sensing" class="form-checkbox"> การสัมผัสจากระยะไกล</label><label class="block"><input type="checkbox" name="geo_knowledge" value="gis" class="form-checkbox"> ระบบสารสนเทศทางภูมิศาสตร์</label><label class="block"><input type="checkbox" name="geo_knowledge" value="gps" class="form-checkbox"> การสำรวจด้วยดาวเทียม</label><label class="block"><input type="checkbox" name="geo_knowledge" value="teaching" class="form-checkbox"> จัดการเรียนการสอนด้านภูมิศาสตร์และภูมิสารสนเทศ</label><label class="block"><input type="checkbox" name="geo_knowledge" value="other" class="form-checkbox"> อื่นๆ<input type="text" name="geo_knowledge_other" class="ml-2 p-1 border-b" placeholder="ระบุ"></label></div></div>
                 </div>
 
-                <!-- ส่วนที่ 2 -->
                 <div id="part2" class="space-y-6 survey-part hidden">
                     <h2 class="text-xl font-bold border-b-2 border-indigo-200 pb-2">ส่วนที่ 2: ความคิดเห็นเกี่ยวกับหลักสูตร พ.ศ. 2566</h2>
                     <div class="bg-blue-50 border-l-4 border-blue-500 text-blue-700 p-4 rounded-md" role="alert">
@@ -182,7 +178,6 @@
                     <div id="part2-questions-container"></div>
                 </div>
 
-                <!-- ส่วนที่ 3 -->
                 <div id="part3" class="space-y-8 survey-part hidden">
                     <h2 class="text-xl font-bold border-b-2 border-indigo-200 pb-2">ส่วนที่ 3: แนวทางการปรับปรุงหลักสูตร พ.ศ. 2570</h2>
                     <div><label for="weakness_2566" class="font-semibold block">3.1 จุดอ่อนที่สำคัญของหลักสูตร พ.ศ. 2566 ที่ต้องปรับปรุง</label><textarea id="weakness_2566" name="weakness_2566" rows="4" class="mt-2 w-full p-2 border rounded-md"></textarea></div>
@@ -222,28 +217,24 @@
                 { id: '2.1', title: 'หมวดที่ 1 ข้อมูลทั่วไป [มคอ.2 หน้า 1-3]' },
                 { id: '2.2', title: 'หมวดที่ 2 คุณสมบัติผู้เข้าศึกษาและแผนการรับนักศึกษา [มคอ.2 หน้า 4-5]' },
                 { id: '2.3', title: 'หมวดที่ 3 ปรัชญา วัตถุประสงค์ และผลลัพธ์การเรียนรู้ของหลักสูตร [มคอ.2 หน้า 6-10]' },
-                { id: '2.4', title: 'Custom Section Placeholder' }, // This will be replaced by the tables
+                { id: '2.4', title: 'Custom Section Placeholder' },
                 { id: '2.5', title: 'หมวดที่ 5 การจัดกระบวนการเรียนรู้ [มคอ.2 หน้า 41-44]' },
                 { id: '2.6', title: 'หมวดที่ 6 ความพร้อมและศักยภาพในการบริหารจัดการหลักสูตร [มคอ.2 หน้า 45-48]' },
                 { id: '2.7', title: 'หมวดที่ 7 การประเมินผลการเรียนและเกณฑ์การสำเร็จการศึกษา [มคอ.2 หน้า 49]' },
                 { id: '2.8', title: 'หมวดที่ 8 การประกันคุณภาพหลักสูตร [มคอ.2 หน้า 50]' },
                 { id: '2.9', title: 'หมวดที่ 9 ระบบและกลไกในการพัฒนาหลักสูตร [มคอ.2 หน้า 51-57]' }
             ];
-
-            // Correct and complete data for table 2.4.1 based on the latest Word document
             const table241Data = [
                 { type: 'header', title: 'วิชาศึกษาทั่วไป (30 หน่วยกิต)' },
                 { course: "เลือกเรียนให้ครบทั้ง 5 หมวด", credit: "30" },
                 { course: "สษ.105 ทักษะการสื่อสารทางภาษาอังกฤษ (บังคับ)", credit: "3 (3-0-6)" },
                 { course: "มธ.151 หรือ มธ.152 (เลือก 1)", credit: "3" },
-
                 { type: 'header', title: 'วิชาเฉพาะ (84 หน่วยกิต)' },
                 { type: 'header', title: 'วิชาแกนคณะ (12 หน่วยกิต)' },
                 { course: "ท.291 การพัฒนาสมรรถภาพการเขียน", credit: "3 (3-0-6)" },
                 { course: "อ.211 การฟัง-พูด", credit: "3 (3-0-6)" },
                 { course: "อ.214 ทักษะการนำเสนอ", credit: "3 (3-0-6)" },
                 { course: "อ.221 การอ่านและการเขียนเชิงบูรณาการ", credit: "3 (3-0-6)" },
-                
                 { type: 'header', title: 'วิชาในสาขา (72 หน่วยกิต)' },
                 { type: 'header', title: 'วิชาบังคับ (42 หน่วยกิต)' },
                 { course: "ภม.111 ภูมิศาสตร์กายภาพ : ธรณีภาคและอุทกภาค", credit: "3 (3-0-6)" },
@@ -260,7 +251,6 @@
                 { course: "ภม.341 สถิติเพื่อการวิจัยทางภูมิศาสตร์", credit: "3 (2-3-4)" },
                 { course: "ภม.441 ระเบียบวิธีวิจัยทางภูมิศาสตร์", credit: "3 (3-0-6)" },
                 { course: "ภม.442 การวิจัยทางภูมิศาสตร์เฉพาะบุคคล", credit: "3 (0-4-5)" },
-
                 { type: 'header', title: 'วิชาบังคับเลือก (30 หน่วยกิต)' },
                 { type: 'header', title: 'กลุ่มวิชาภูมิศาสตร์กายภาพ' },
                 { course: "ภม.215 ทรัพยากรธรรมชาติและความยั่งยืน", credit: "3 (3-0-6)" },
@@ -269,7 +259,6 @@
                 { course: "ภม.218 ลักษณะทางภูมิศาสตร์และแหล่งพลังงานหมุนเวียน", credit: "3 (3-0-6)" },
                 { course: "ภม.315 ภัยธรรมชาติศึกษา", credit: "3 (3-0-6)" },
                 { course: "ภม.316 ภูมิสารสนเทศเพื่อการจัดการการเปลี่ยนแปลงสภาพภูมิอากาศ", credit: "3 (3-0-6)" },
-                
                 { type: 'header', title: 'กลุ่มวิชาภูมิศาสตร์มนุษย์' },
                 { course: "ภม.225 ภูมิศาสตร์ประชากรและการย้ายถิ่น", credit: "3 (3-0-6)" },
                 { course: "ภม.226 ภูมิศาสตร์เศรษฐกิจ", credit: "3 (3-0-6)" },
@@ -279,7 +268,6 @@
                 { course: "ภม.326 ภูมิศาสตร์ในงานสาธารณสุข", credit: "3 (3-0-6)" },
                 { course: "ภม.327 สิ่งบ่งชี้ทางภูมิศาสตร์และการพัฒนาท้องถิ่น", credit: "3 (3-0-6)" },
                 { course: "ภม.425 ภูมิศาสตร์การสื่อสารในยุคดิจิทัล", credit: "3 (3-0-6)" },
-
                 { type: 'header', title: 'กลุ่มวิชาเทคโนโลยีภูมิสารสนเทศ' },
                 { course: "ภม.235 การประยุกต์ระบบสารสนเทศภูมิศาสตร์", credit: "3 (2-3-4)" },
                 { course: "ภม.335 โลจิสติกส์และการเลือกที่ตั้งเชิงธุรกิจ", credit: "3 (2-2-5)" },
@@ -290,18 +278,14 @@
                 { course: "ภม.435 ไมโครเวฟรีโมทเซนซิง", credit: "3 (2-2-5)" },
                 { course: "ภม.436 ปัญญาประดิษฐ์เพื่อสังคม", credit: "3 (2-3-4)" },
                 { course: "ภม.437 การพัฒนาระบบบริการข้อมูลเชิงพื้นที่ผ่านเครือข่ายอินเทอร์เน็ต", credit: "3 (2-2-5)" },
-
                 { type: 'header', title: 'กลุ่มวิชาวิจัยและฝึกงาน' },
                 { course: "ภม.345 ฝึกงานทางภูมิศาสตร์ (ไม่น้อยกว่า 210 ชั่วโมง ต่อภาคการศึกษา)", credit: "3 (0-9-0)" },
-                
                 { type: 'header', title: 'วิชาโทหรือวิชาเลือก (18 หน่วยกิต)' },
                 { type: 'info', text: '3.1 เลือกศึกษาสาขาวิชาใดสาขาวิชาหนึ่งที่เปิดสอนในมหาวิทยาลัยธรรมศาสตร์เป็นวิชาโท โดยศึกษาตามข้อกำหนดและเงื่อนไขของหลักสูตรวิชาโทในสาขาวิชานั้น ๆ ในกรณีที่นักศึกษาเลือกศึกษาวิชาโทของหลักสูตรอื่น ๆ ที่มีโครงสร้าง 15 หน่วยกิต นักศึกษาต้องเรียนวิชาใดก็ได้เพิ่มอีก 3 หน่วยกิตเพื่อให้ครบโครงสร้าง 18 หน่วยกิตตามที่หลักสูตรกำหนด หรือ' },
                 { type: 'info', text: '3.2 เลือกศึกษาจากวิชาของสาขาวิชาใดก็ได้ที่เปิดสอนในมหาวิทยาลัยธรรมศาสตร์ รวมไม่เกิน 4 คณะ ไม่น้อยกว่า 18 หน่วยกิต ทั้งนี้ นักศึกษาไม่สามารถนำรายวิชาในหลักสูตรวิชาศึกษาทั่วไปฉบับ พ.ศ. 2566 ที่เป็นรหัสระดับ 100 ไปนับเป็นวิชาโทหรือวิชาเลือก' },
-
                 { type: 'header', title: 'วิชาเลือกเสรี (6 หน่วยกิต)' },
                 { type: 'info', text: 'เลือกศึกษาวิชาใดก็ได้ที่เปิดสอนในมหาวิทยาลัยธรรมศาสตร์เป็นวิชาเลือกเสรีจำนวนอย่างน้อย 6 หน่วยกิต ยกเว้น รายวิชาในหลักสูตรวิชาศึกษาทั่วไปฉบับ พ.ศ. 2566 ที่เป็นรหัสระดับ 100 ไปนับเป็นวิชาเลือกเสรี' }
             ];
-            
             const table242Data = {
                 "วิชาศึกษาทั่วไป": ["จำนวนหน่วยกิตรวม 30 หน่วยกิต", "เนื้อหาวิชามีความทันสมัย", "เนื้อหาวิชาสามารถนำไปปรับใช้ในชีวิตประจำวัน", "เนื้อหาวิชาสนับสนุนจุดมุ่งหมายของหลักสูตร"],
                 "วิชาเฉพาะ": ["จำนวนหน่วยกิตรวม 84 หน่วยกิต", "วิชาแกนคณะ 12 หน่วยกิต", "วิชาเฉพาะในสาขา- กลุ่มวิชาบังคับ 42 หน่วยกิต", "วิชาเฉพาะในสาขา- กลุ่มวิชาบังคับเลือก 30 หน่วยกิต", "วิชาเฉพาะในสาขา มีความทันสมัย", "วิชาเฉพาะในสาขา มีความสอดคล้องกับตลาดแรงงาน", "สัดส่วนระหว่างวิชาเฉพาะในคณะ กับวิชาเฉพาะในสาขา", "สัดส่วนระหว่างวิชาบังคับกับวิชาบังคับเลือก"],
@@ -309,11 +293,10 @@
                 "วิชาเลือกเสรี": ["จำนวนหน่วยกิตรวม 6 หน่วยกิต", "ความทันสมัย", "ความสอดคล้องกับตลาดแรงงาน"],
                 "โครงสร้างหลักสูตร": ["หน่วยกิตรวมตลอดหลักสูตรไม่น้อยกว่า 138 หน่วยกิต", "สัดส่วนวิชาศึกษาทั่วไป วิชาเฉพาะ วิชาโท และเลือกเสรี", "โครงสร้างและรายวิชาสอดคล้องกับจุดมุ่งหมาย", "ความชัดเจนของอัตลักษณ์/ความแตกต่างจากสถาบันอื่น"]
             };
-
             const options3Point = [{ text: 'เหมาะสม', value: '3' }, { text: 'ควรปรับปรุง', value: '2' }, { text: 'ไม่มีความเห็น', value: '1' }];
 
-            // !!! IMPORTANT !!! PASTE YOUR GOOGLE APPS SCRIPT URL HERE
-            const scriptURL = 'https://script.google.com/macros/s/AKfycbw7gRKikz5fRcDqUq_BmL-QJVnurMSJregGDpvoksn82maexU-Y3FBK757-DA616bjbMQ/exec';
+            // --- URL ที่ถูกต้องของคุณ ---
+            const scriptURL = 'https://script.google.com/macros/s/AKfycbyhdPUtw-5hFq3WnCPb1z44AD45IJrb7fEHe94Xenw25bFZOJ51Dz93U7AY30P_i6WGTQ/exec';
 
             let currentPart = 1;
             const totalParts = 3;
@@ -331,7 +314,6 @@
             const loadingIndicator = document.getElementById('loadingIndicator');
             let allSuggestions = '';
 
-            // --- Populate Part 2 ---
             const part2Container = document.getElementById('part2-questions-container');
             part2Questions.forEach(q => {
                 if (q.id === '2.4') {
@@ -353,7 +335,7 @@
                         </div>
                     `);
                 } else {
-                     part2Container.insertAdjacentHTML('beforeend', `
+                    part2Container.insertAdjacentHTML('beforeend', `
                         <div class="space-y-2 suggestion-group">
                             <h3 class="section-subheader">${q.id} ${q.title}</h3>
                             <div class="flex items-center space-x-4 mt-2">
@@ -397,20 +379,20 @@
             if (table242Container) {
                 let table242Html = `<div class="border rounded-lg overflow-hidden"><div class="rating-table-row font-bold bg-gray-50"><div class="pl-2">ประเด็น</div><div class="col-span-2">ระดับความคิดเห็น</div></div>`;
                 Object.entries(table242Data).forEach(([group, items]) => {
-                     table242Html += `<div class="font-bold bg-gray-100 p-2 col-span-3">${group}</div>`;
-                     items.forEach((item, index) => {
+                    table242Html += `<div class="font-bold bg-gray-100 p-2 col-span-3">${group}</div>`;
+                    items.forEach((item, index) => {
                         const name = `table242_${group.replace(/[^a-zA-Z0-9]/g, '')}_${index}`;
                         table242Html += `
                             <div class="rating-table-row">
                                 <div class="pl-4">${item}</div>
                                 <div class="col-span-2">
                                     <select name="${name}" class="w-full p-2 border rounded-md">
-                                         ${options3Point.map(opt => `<option value="${opt.value}">${opt.text}</option>`).join('')}
+                                        ${options3Point.map(opt => `<option value="${opt.value}">${opt.text}</option>`).join('')}
                                     </select>
                                 </div>
                             </div>
                         `;
-                     });
+                    });
                 });
                 table242Container.innerHTML = table242Html + `</div>`;
             }
@@ -444,12 +426,7 @@
             
             form.addEventListener('submit', (e) => {
                 e.preventDefault();
-                if (scriptURL === '') {
-                    submissionStatus.textContent = 'ข้อผิดพลาด: กรุณาใส่ URL ของ Google Apps Script ในโค้ดก่อน';
-                    submissionStatus.className = 'text-center p-4 my-4 rounded-md bg-red-100 text-red-800';
-                    submissionStatus.classList.remove('hidden');
-                    return;
-                }
+                
                 submitBtn.disabled = true;
                 submitBtn.textContent = 'กำลังส่ง...';
                 submitBtn.classList.add('opacity-50');
@@ -485,22 +462,23 @@
                 const prompt = `คุณคือผู้เชี่ยวชาญด้านการพัฒนาหลักสูตรการศึกษา โปรดวิเคราะห์และสรุปข้อเสนอแนะจากผู้ทรงคุณวุฒิสำหรับหลักสูตรภูมิศาสตร์ โดยจัดระเบียบคำตอบตามหัวข้อ: 1. **สรุปประเด็นสำคัญ**, 2. **จุดแข็งของหลักสูตร**, 3. **ประเด็นที่ควรพิจารณาเพื่อการปรับปรุง**, 4. **ข้อเสนอแนะเชิงปฏิบัติ 2-3 ข้อ**. ข้อมูล: --- ${allSuggestions} ---`;
                 try {
                     const payload = { contents: [{ role: "user", parts: [{ text: prompt }] }] };
-                    const apiKey = "";
-                    const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-preview-05-20:generateContent?key=${apiKey}`;
-                    let response;
-                    for (let i = 0, delay = 1000; i < 5; i++, delay *= 2) {
-                        try {
-                            const res = await fetch(apiUrl, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(payload) });
-                            if (res.ok) { response = res; break; }
-                            if (res.status === 429 || res.status >= 500) await new Promise(r => setTimeout(r, delay));
-                            else throw new Error(`API request failed with status ${res.status}`);
-                        } catch (error) { if (i === 4) throw error; await new Promise(r => setTimeout(r, delay)); }
+                    // หมายเหตุ: คุณต้องใส่ API Key ของคุณเองเพื่อให้ส่วนนี้ทำงาน
+                    const apiKey = ""; 
+                    const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-pro:generateContent?key=${apiKey}`;
+                    
+                    if (!apiKey) {
+                        analysisResult.innerHTML = `<p class="text-red-500">ข้อผิดพลาด: ไม่ได้ตั้งค่า Gemini API Key ในโค้ด</p>`;
+                        throw new Error("API Key is missing.");
                     }
-                    if (!response) throw new Error('API request failed after multiple retries.');
-                    const result = await response.json();
+
+                    const res = await fetch(apiUrl, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(payload) });
+                    if (!res.ok) {
+                        throw new Error(`API request failed with status ${res.status}`);
+                    }
+                    const result = await res.json();
                     const text = result.candidates?.[0]?.content?.parts?.[0]?.text;
                     if (text) {
-                        analysisResult.innerHTML = text.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>').replace(/\*/g, '<br> &bull; ').replace(/\n/g, '<br>');
+                        analysisResult.innerHTML = text.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>').replace(/\n/g, '<br>');
                     } else { throw new Error('Invalid API response structure.'); }
                 } catch (error) {
                     console.error('Error calling Gemini API:', error);
