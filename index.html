@@ -313,7 +313,7 @@
             const options3Point = [{ text: 'เหมาะสม', value: '3' }, { text: 'ควรปรับปรุง', value: '2' }, { text: 'ไม่มีความเห็น', value: '1' }];
 
             // --- FIX: Updated the scriptURL to your correct deployment URL ---
-            const scriptURL = 'https://script.google.com/macros/s/AKfycbyHwhMG0PVbvTKVdr2vGKBXF1Bb6a_sxK_zsiZ7KVUe6usRvHB6xRFXlcJQYovIFESf/exec';
+            const scriptURL = 'https://script.google.com/macros/s/AKfycbymwf12PAeBaQv9ccHx4l6Cr4KgnWTnRfFoAiBdT5ay496O3rbzotI5bWj8FjmS_dRj/exec';
 
             let currentPart = 1;
             const totalParts = 3;
@@ -474,45 +474,6 @@
                         submitBtn.classList.remove('opacity-50');
                     });
             });
-
-            analyzeBtn.addEventListener('click', async () => {
-                loadingIndicator.classList.remove('hidden');
-                analysisResult.classList.add('hidden');
-                analyzeBtn.disabled = true;
-                analyzeBtn.classList.add('opacity-50');
-                const prompt = `คุณคือผู้เชี่ยวชาญด้านการพัฒนาหลักสูตรการศึกษา โปรดวิเคราะห์และสรุปข้อเสนอแนะจากผู้ทรงคุณวุฒิสำหรับหลักสูตรภูมิศาสตร์ โดยจัดระเบียบคำตอบตามหัวข้อ: 1. **สรุปประเด็นสำคัญ**, 2. **จุดแข็งของหลักสูตร**, 3. **ประเด็นที่ควรพิจารณาเพื่อการปรับปรุง**, 4. **ข้อเสนอแนะเชิงปฏิบัติ 2-3 ข้อ**. ข้อมูล: --- ${allSuggestions} ---`;
-                try {
-                    const payload = { contents: [{ role: "user", parts: [{ text: prompt }] }] };
-                    const apiKey = "";
-                    const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-preview-05-20:generateContent?key=${apiKey}`;
-                    let response;
-                    for (let i = 0, delay = 1000; i < 5; i++, delay *= 2) {
-                        try {
-                            const res = await fetch(apiUrl, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(payload) });
-                            if (res.ok) { response = res; break; }
-                            if (res.status === 429 || res.status >= 500) await new Promise(r => setTimeout(r, delay));
-                            else throw new Error(`API request failed with status ${res.status}`);
-                        } catch (error) { if (i === 4) throw error; await new Promise(r => setTimeout(r, delay)); }
-                    }
-                    if (!response) throw new Error('API request failed after multiple retries.');
-                    const result = await response.json();
-                    const text = result.candidates?.[0]?.content?.parts?.[0]?.text;
-                    if (text) {
-                        analysisResult.innerHTML = text.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>').replace(/\*/g, '<br> &bull; ').replace(/\n/g, '<br>');
-                    } else { throw new Error('Invalid API response structure.'); }
-                } catch (error) {
-                    console.error('Error calling Gemini API:', error);
-                    analysisResult.innerHTML = `<p class="text-red-500">เกิดข้อผิดพลาดในการเชื่อมต่อกับ AI: ${error.message}</p>`;
-                } finally {
-                    loadingIndicator.classList.add('hidden');
-                    analysisResult.classList.remove('hidden');
-                    analyzeBtn.disabled = false;
-                    analyzeBtn.classList.remove('opacity-50');
-                }
-            });
-            showPart(currentPart);
-        });
     </script>
 </body>
 </html>
-
