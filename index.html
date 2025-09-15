@@ -9,21 +9,95 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Sarabun:wght@400;500;700&display=swap" rel="stylesheet">
     <style>
-        body { font-family: 'Sarabun', sans-serif; }
-        .form-radio { appearance:none; border-radius:50%; width:1.25rem; height:1.25rem; border:2px solid #d1d5db; transition:.2s all linear; margin-right:.5rem; position:relative; top:4px }
-        .form-radio:checked { border:6px solid #4f46e5; }
-        .form-checkbox { appearance:none; border-radius:.25rem; width:1.25rem; height:1.25rem; border:2px solid #d1d5db; transition:.2s all linear; margin-right:.5rem; position:relative; top:4px }
-        .form-checkbox:checked { background-color:#4f46e5; background-image:url("data:image/svg+xml,%3csvg viewBox='0 0 16 16' fill='white' xmlns='http://www.w3.org/2000/svg'%3e%3cpath d='M12.207 4.793a1 1 0 010 1.414l-5 5a1 1 0 01-1.414 0l-2-2a1 1 0 011.414-1.414L6.5 9.086l4.293-4.293a1 1 0 011.414 0z'/%3e%3c/svg%3e"); }
-        .rating-table-row { display:grid; grid-template-columns:3fr 1fr 2fr; gap:1rem; align-items:center; padding:.75rem .5rem; border-bottom:1px solid #e5e7eb;}
-        .rating-table-row:nth-child(even) { background-color:#f9fafb; }
-        .rating-table-row:last-child { border-bottom:none; }
-        .rating-table-header { font-weight:bold; background-color:#f3f4f6; padding:.75rem; grid-column:1/-1; border-bottom:1px solid #e5e7eb; }
-        .rating-table-info { padding:.75rem 1rem; grid-column:1/-1; font-size:.875rem; color:#4b5563; border-bottom:1px solid #e5e7eb; background-color:#f9fafb; }
-        .section-subheader { font-size:1.125rem; font-weight:600; background-color:#f3f4f6; padding:.75rem; margin-top:1.5rem; border-radius:.5rem; }
-        .suggestion-box { display:none; margin-top:1rem; padding:1rem; border:1px dashed #d1d5db; border-radius:.5rem; background-color:#f9fafb; }
+        body {
+            font-family: 'Sarabun', sans-serif;
+        }
+        .form-radio {
+            -webkit-appearance: none;
+            -moz-appearance: none;
+            appearance: none;
+            border-radius: 50%;
+            width: 1.25rem;
+            height: 1.25rem;
+            border: 2px solid #d1d5db;
+            transition: 0.2s all linear;
+            margin-right: 0.5rem;
+            position: relative;
+            top: 4px;
+        }
+        .form-radio:checked {
+            border: 6px solid #4f46e5;
+        }
+        .form-checkbox {
+            -webkit-appearance: none;
+            -moz-appearance: none;
+            appearance: none;
+            border-radius: 0.25rem;
+            width: 1.25rem;
+            height: 1.25rem;
+            border: 2px solid #d1d5db;
+            transition: 0.2s all linear;
+            margin-right: 0.5rem;
+            position: relative;
+            top: 4px;
+        }
+        .form-checkbox:checked {
+            background-color: #4f46e5;
+            background-image: url("data:image/svg+xml,%3csvg viewBox='0 0 16 16' fill='white' xmlns='http://www.w3.org/2000/svg'%3e%3cpath d='M12.207 4.793a1 1 0 010 1.414l-5 5a1 1 0 01-1.414 0l-2-2a1 1 0 011.414-1.414L6.5 9.086l4.293-4.293a1 1 0 011.414 0z'/%3e%3c/svg%3e");
+        }
+        .rating-table-row {
+            display: grid;
+            grid-template-columns: 3fr 1fr 2fr;
+            gap: 1rem;
+            align-items: center;
+            padding: 0.75rem 0.5rem;
+            border-bottom: 1px solid #e5e7eb;
+        }
+         .rating-table-row:nth-child(even) {
+            background-color: #f9fafb;
+        }
+        .rating-table-row:last-child {
+            border-bottom: none;
+        }
+        .rating-table-header {
+            font-weight: bold;
+            background-color: #f3f4f6;
+            padding: 0.75rem;
+            grid-column: 1 / -1; /* Span all columns */
+            border-bottom: 1px solid #e5e7eb;
+        }
+        .rating-table-info {
+            padding: 0.75rem 1rem;
+            grid-column: 1 / -1; /* Span all columns */
+            font-size: 0.875rem; /* text-sm */
+            color: #4b5563; /* text-gray-600 */
+            border-bottom: 1px solid #e5e7eb;
+            background-color: #f9fafb;
+        }
+        .section-subheader {
+            font-size: 1.125rem; /* text-lg */
+            font-weight: 600; /* font-semibold */
+            background-color: #f3f4f6; /* bg-gray-100 */
+            padding: 0.75rem; /* p-3 */
+            margin-top: 1.5rem; /* mt-6 */
+            border-radius: 0.5rem; /* rounded-lg */
+        }
+        .suggestion-box {
+            display: none;
+            margin-top: 1rem;
+            padding: 1rem;
+            border: 1px dashed #d1d5db;
+            border-radius: 0.5rem;
+            background-color: #f9fafb;
+        }
         @media (max-width: 768px) {
-            .rating-table-row { grid-template-columns:1fr; gap:.5rem; }
-            .rating-table-header, .rating-table-info { text-align:left; }
+            .rating-table-row {
+                grid-template-columns: 1fr;
+                gap: 0.5rem;
+            }
+            .rating-table-header, .rating-table-info {
+                text-align: left;
+            }
         }
     </style>
 </head>
@@ -39,7 +113,7 @@
                 <p class="text-gray-600 mt-2">สำหรับผู้ทรงคุณวุฒิ</p>
             </div>
 
-            <!-- คำชี้แจง (คงข้อความเดิม) -->
+            <!-- คำชี้แจง -->
             <div class="mt-8 mb-8 p-6 bg-gray-50 rounded-lg border border-gray-200 text-left text-gray-700">
                 <h2 class="text-lg font-semibold mb-4 text-indigo-700">คำชี้แจง</h2>
                 <p class="mb-4">
@@ -62,18 +136,17 @@
                 </div>
             </div>
 
+            <!-- Progress Bar -->
             <div class="w-full bg-gray-200 rounded-full h-2.5 mb-10">
                 <div id="progress-bar" class="bg-indigo-600 h-2.5 rounded-full transition-all duration-500" style="width: 33%"></div>
             </div>
 
             <form id="surveyForm">
-                <!-- เพิ่ม hidden กันบางเบราว์เซอร์ส่งว่าง -->
-                <input type="hidden" name="form_name" value="geog_tu_expert_survey">
-
+                <!-- ส่วนที่ 1 -->
                 <div id="part1" class="space-y-6 survey-part">
                     <h2 class="text-xl font-bold border-b-2 border-indigo-200 pb-2">ส่วนที่ 1: ข้อมูลของผู้ตอบแบบสอบถาม</h2>
                     
-                    <div><label for="expert_name" class="font-semibold">1. ชื่อ – นามสกุล (หากมีตำแหน่งทางวิชาการ โปรดระบุ)</label><input type="text" id="expert_name" name="expert_name" class="mt-2 w-full p-2 border rounded-md" required></div>
+                    <div><label for="expert_name" class="font-semibold">1. ชื่อ – นามสกุล (หากมีตำแหน่งทางวิชาการ โปรดระบุ)</label><input type="text" id="expert_name" name="expert_name" class="mt-2 w-full p-2 border rounded-md"></div>
                     <div><label for="age" class="font-semibold">2. ปัจจุบันท่านมีอายุ</label><input type="number" id="age" name="age" class="mt-2 w-full p-2 border rounded-md"></div>
                     <div><label class="font-semibold">3. การศึกษาขั้นสูงสุด</label><div class="grid sm:grid-cols-2 gap-2 mt-2"><label><input type="radio" name="education" value="bachelor" class="form-radio"> ปริญญาตรี</label><label><input type="radio" name="education" value="master" class="form-radio"> ปริญญาโท</label><label><input type="radio" name="education" value="doctorate" class="form-radio"> ปริญญาเอก</label><label><input type="radio" name="education" value="other" class="form-radio"> อื่นๆ <input type="text" name="education_other" class="ml-2 p-1 border-b" placeholder="ระบุ"></label></div></div>
                     <div>
@@ -95,12 +168,13 @@
                     <div><label class="font-semibold">9. หน่วยงานของท่านส่วนใหญ่ใช้ความรู้ความสามารถในวิชาการด้านใดที่เกี่ยวกับภูมิศาสตร์</label><div class="space-y-2 mt-2"><label class="block"><input type="checkbox" name="geo_knowledge" value="map_reading" class="form-checkbox"> การอ่านแผนที่และการแปลตีความภาพถ่ายทางอากาศ</label><label class="block"><input type="checkbox" name="geo_knowledge" value="photogrammetry" class="form-checkbox"> โฟโตแกรมเมตรี</label><label class="block"><input type="checkbox" name="geo_knowledge" value="remote_sensing" class="form-checkbox"> การสัมผัสจากระยะไกล</label><label class="block"><input type="checkbox" name="geo_knowledge" value="gis" class="form-checkbox"> ระบบสารสนเทศทางภูมิศาสตร์</label><label class="block"><input type="checkbox" name="geo_knowledge" value="gps" class="form-checkbox"> การสำรวจด้วยดาวเทียม</label><label class="block"><input type="checkbox" name="geo_knowledge" value="teaching" class="form-checkbox"> จัดการเรียนการสอนด้านภูมิศาสตร์และภูมิสารสนเทศ</label><label class="block"><input type="checkbox" name="geo_knowledge" value="other" class="form-checkbox"> อื่นๆ<input type="text" name="geo_knowledge_other" class="ml-2 p-1 border-b" placeholder="ระบุ"></label></div></div>
                 </div>
 
+                <!-- ส่วนที่ 2 -->
                 <div id="part2" class="space-y-6 survey-part hidden">
                     <h2 class="text-xl font-bold border-b-2 border-indigo-200 pb-2">ส่วนที่ 2: ความคิดเห็นเกี่ยวกับหลักสูตร พ.ศ. 2566</h2>
                     <div class="bg-blue-50 border-l-4 border-blue-500 text-blue-700 p-4 rounded-md" role="alert">
                         <p class="font-bold">คำแนะนำ</p>
                         <p>โปรดอ่านเอกสาร มคอ.2 ประกอบการตอบคำถามในส่วนนี้</p>
-                        <a href="https://github.com/SitthisakMoukomla/geog_tu_survey2568/blob/main/%E0%B8%A1%E0%B8%84%E0%B8%AD2.%E0%B8%A7%E0%B8%97.%E0%B8%9A.%E0%B8%A0%E0%B8%B9%E0%B8%A1%E0%B8%B4%E0%B8%A8%E0%B8%B2%E0%B8%AA%E0%B8%95%E0%B8%A3%E0%B9%8C%E0%B9%81%E0%B8%A5%E0%B8%B0%E0%B8%A0%E0%B8%B9%E0%B8%A1%E0%B8%B4%E0%B8%AA%E0%B8%B2%E0%B8%A3%E0%B8%AA%E0%B8%99%E0%B9%80%E0%B8%97%E0%B8%A8(%E0%B8%AA%E0%B9%88%E0%B8%87%E0%B8%AD%E0%B8%A7).pdf" target="_blank" class="mt-2 inline-block bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded">
+                        <a href="https://github.com/SitthisakMoukomla/geog_tu_survey2568/blob/main/%E0%B8%A1%E0%B8%84%E0%B8%AD2.%E0%B8%A7%E0%B8%97.%E0%B8%9A.%E0%B8%A0%E0%B8%B9%E0%B8%A1%E0%B8%B4%E0%B8%A8%E0%B8%B2%E0%B8%AA%E0%B8%95%E0%B8%A3%E0%B9%8C%E0%B9%81%E0%B8%A5%E0%B8%B0%E0%B8%A0%E0%B8%B9%E0%B8%A1%E0%B8%B4%E0%B8%AA%E0%B8%B2%E0%B8%A3%E0%B8%AA%E0%B8%99%E0%B9%80%E0%B8%97%E0%B8%A8(%E0%B8%AA%E0%B9%88%E0%B8%87%E0%B8%AD%E0%B8%Aว).pdf" target="_blank" class="mt-2 inline-block bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded">
                             เปิดเอกสาร มคอ.2.วทบ.ภูมิศาสตร์และภูมิสารสนเทศ.pdf
                         </a>
                     </div>
@@ -108,6 +182,7 @@
                     <div id="part2-questions-container"></div>
                 </div>
 
+                <!-- ส่วนที่ 3 -->
                 <div id="part3" class="space-y-8 survey-part hidden">
                     <h2 class="text-xl font-bold border-b-2 border-indigo-200 pb-2">ส่วนที่ 3: แนวทางการปรับปรุงหลักสูตร พ.ศ. 2570</h2>
                     <div><label for="weakness_2566" class="font-semibold block">3.1 จุดอ่อนที่สำคัญของหลักสูตร พ.ศ. 2566 ที่ต้องปรับปรุง</label><textarea id="weakness_2566" name="weakness_2566" rows="4" class="mt-2 w-full p-2 border rounded-md"></textarea></div>
@@ -124,7 +199,14 @@
                     <p class="text-gray-600 mt-2">ขอขอบพระคุณอย่างสูง เราได้รับข้อมูลของท่านเรียบร้อยแล้ว</p>
                 </div>
 
-                <div class="flex justify-between mt-10" id="navButtons">
+                <div id="analysisSection" class="hidden text-left p-6 border-t-2 border-indigo-100 mt-8">
+                    <h3 class="text-xl font-bold text-indigo-700 mb-4">วิเคราะห์ข้อเสนอแนะด้วย AI</h3>
+                    <button type="button" id="analyzeBtn" class="bg-purple-600 hover:bg-purple-700 text-white font-bold py-2 px-6 rounded-lg transition"><span class="mr-2">✨</span> วิเคราะห์และสรุปข้อเสนอแนะ</button>
+                    <div id="loadingIndicator" class="mt-6 text-center hidden"><svg class="animate-spin h-8 w-8 text-indigo-600 mx-auto" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"><circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle><path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path></svg><p class="mt-2 text-gray-600">กำลังวิเคราะห์ข้อมูล...</p></div>
+                    <div id="analysisResult" class="mt-6 p-4 border rounded-lg bg-gray-50 hidden"></div>
+                </div>
+
+                <div class="flex justify-between mt-10">
                     <button type="button" id="prevBtn" class="bg-gray-300 hover:bg-gray-400 text-gray-800 font-bold py-2 px-6 rounded-lg">ก่อนหน้า</button>
                     <button type="button" id="nextBtn" class="bg-indigo-600 hover:bg-indigo-700 text-white font-bold py-2 px-6 rounded-lg">ถัดไป</button>
                     <button type="submit" id="submitBtn" class="bg-green-600 hover:bg-green-700 text-white font-bold py-2 px-6 rounded-lg hidden">ส่งแบบสอบถาม</button>
@@ -135,29 +217,33 @@
 
     <script>
         document.addEventListener('DOMContentLoaded', function() {
-            // --- DATA FOR DYNAMIC QUESTIONS (คงเดิม) ---
+            // --- DATA FOR DYNAMIC QUESTIONS ---
             const part2Questions = [
                 { id: '2.1', title: 'หมวดที่ 1 ข้อมูลทั่วไป [มคอ.2 หน้า 1-3]' },
                 { id: '2.2', title: 'หมวดที่ 2 คุณสมบัติผู้เข้าศึกษาและแผนการรับนักศึกษา [มคอ.2 หน้า 4-5]' },
                 { id: '2.3', title: 'หมวดที่ 3 ปรัชญา วัตถุประสงค์ และผลลัพธ์การเรียนรู้ของหลักสูตร [มคอ.2 หน้า 6-10]' },
-                { id: '2.4', title: 'Custom Section Placeholder' },
+                { id: '2.4', title: 'Custom Section Placeholder' }, // This will be replaced by the tables
                 { id: '2.5', title: 'หมวดที่ 5 การจัดกระบวนการเรียนรู้ [มคอ.2 หน้า 41-44]' },
                 { id: '2.6', title: 'หมวดที่ 6 ความพร้อมและศักยภาพในการบริหารจัดการหลักสูตร [มคอ.2 หน้า 45-48]' },
                 { id: '2.7', title: 'หมวดที่ 7 การประเมินผลการเรียนและเกณฑ์การสำเร็จการศึกษา [มคอ.2 หน้า 49]' },
                 { id: '2.8', title: 'หมวดที่ 8 การประกันคุณภาพหลักสูตร [มคอ.2 หน้า 50]' },
                 { id: '2.9', title: 'หมวดที่ 9 ระบบและกลไกในการพัฒนาหลักสูตร [มคอ.2 หน้า 51-57]' }
             ];
+
+            // Correct and complete data for table 2.4.1 based on the latest Word document
             const table241Data = [
                 { type: 'header', title: 'วิชาศึกษาทั่วไป (30 หน่วยกิต)' },
                 { course: "เลือกเรียนให้ครบทั้ง 5 หมวด", credit: "30" },
                 { course: "สษ.105 ทักษะการสื่อสารทางภาษาอังกฤษ (บังคับ)", credit: "3 (3-0-6)" },
                 { course: "มธ.151 หรือ มธ.152 (เลือก 1)", credit: "3" },
+
                 { type: 'header', title: 'วิชาเฉพาะ (84 หน่วยกิต)' },
                 { type: 'header', title: 'วิชาแกนคณะ (12 หน่วยกิต)' },
                 { course: "ท.291 การพัฒนาสมรรถภาพการเขียน", credit: "3 (3-0-6)" },
                 { course: "อ.211 การฟัง-พูด", credit: "3 (3-0-6)" },
                 { course: "อ.214 ทักษะการนำเสนอ", credit: "3 (3-0-6)" },
                 { course: "อ.221 การอ่านและการเขียนเชิงบูรณาการ", credit: "3 (3-0-6)" },
+                
                 { type: 'header', title: 'วิชาในสาขา (72 หน่วยกิต)' },
                 { type: 'header', title: 'วิชาบังคับ (42 หน่วยกิต)' },
                 { course: "ภม.111 ภูมิศาสตร์กายภาพ : ธรณีภาคและอุทกภาค", credit: "3 (3-0-6)" },
@@ -174,6 +260,7 @@
                 { course: "ภม.341 สถิติเพื่อการวิจัยทางภูมิศาสตร์", credit: "3 (2-3-4)" },
                 { course: "ภม.441 ระเบียบวิธีวิจัยทางภูมิศาสตร์", credit: "3 (3-0-6)" },
                 { course: "ภม.442 การวิจัยทางภูมิศาสตร์เฉพาะบุคคล", credit: "3 (0-4-5)" },
+
                 { type: 'header', title: 'วิชาบังคับเลือก (30 หน่วยกิต)' },
                 { type: 'header', title: 'กลุ่มวิชาภูมิศาสตร์กายภาพ' },
                 { course: "ภม.215 ทรัพยากรธรรมชาติและความยั่งยืน", credit: "3 (3-0-6)" },
@@ -182,6 +269,7 @@
                 { course: "ภม.218 ลักษณะทางภูมิศาสตร์และแหล่งพลังงานหมุนเวียน", credit: "3 (3-0-6)" },
                 { course: "ภม.315 ภัยธรรมชาติศึกษา", credit: "3 (3-0-6)" },
                 { course: "ภม.316 ภูมิสารสนเทศเพื่อการจัดการการเปลี่ยนแปลงสภาพภูมิอากาศ", credit: "3 (3-0-6)" },
+                
                 { type: 'header', title: 'กลุ่มวิชาภูมิศาสตร์มนุษย์' },
                 { course: "ภม.225 ภูมิศาสตร์ประชากรและการย้ายถิ่น", credit: "3 (3-0-6)" },
                 { course: "ภม.226 ภูมิศาสตร์เศรษฐกิจ", credit: "3 (3-0-6)" },
@@ -191,6 +279,7 @@
                 { course: "ภม.326 ภูมิศาสตร์ในงานสาธารณสุข", credit: "3 (3-0-6)" },
                 { course: "ภม.327 สิ่งบ่งชี้ทางภูมิศาสตร์และการพัฒนาท้องถิ่น", credit: "3 (3-0-6)" },
                 { course: "ภม.425 ภูมิศาสตร์การสื่อสารในยุคดิจิทัล", credit: "3 (3-0-6)" },
+
                 { type: 'header', title: 'กลุ่มวิชาเทคโนโลยีภูมิสารสนเทศ' },
                 { course: "ภม.235 การประยุกต์ระบบสารสนเทศภูมิศาสตร์", credit: "3 (2-3-4)" },
                 { course: "ภม.335 โลจิสติกส์และการเลือกที่ตั้งเชิงธุรกิจ", credit: "3 (2-2-5)" },
@@ -201,14 +290,18 @@
                 { course: "ภม.435 ไมโครเวฟรีโมทเซนซิง", credit: "3 (2-2-5)" },
                 { course: "ภม.436 ปัญญาประดิษฐ์เพื่อสังคม", credit: "3 (2-3-4)" },
                 { course: "ภม.437 การพัฒนาระบบบริการข้อมูลเชิงพื้นที่ผ่านเครือข่ายอินเทอร์เน็ต", credit: "3 (2-2-5)" },
-                { type: 'header', title: 'กลุ่มวิจัยและฝึกงาน' },
+
+                { type: 'header', title: 'กลุ่มวิชาวิจัยและฝึกงาน' },
                 { course: "ภม.345 ฝึกงานทางภูมิศาสตร์ (ไม่น้อยกว่า 210 ชั่วโมง ต่อภาคการศึกษา)", credit: "3 (0-9-0)" },
+                
                 { type: 'header', title: 'วิชาโทหรือวิชาเลือก (18 หน่วยกิต)' },
                 { type: 'info', text: '3.1 เลือกศึกษาสาขาวิชาใดสาขาวิชาหนึ่งที่เปิดสอนในมหาวิทยาลัยธรรมศาสตร์เป็นวิชาโท โดยศึกษาตามข้อกำหนดและเงื่อนไขของหลักสูตรวิชาโทในสาขาวิชานั้น ๆ ในกรณีที่นักศึกษาเลือกศึกษาวิชาโทของหลักสูตรอื่น ๆ ที่มีโครงสร้าง 15 หน่วยกิต นักศึกษาต้องเรียนวิชาใดก็ได้เพิ่มอีก 3 หน่วยกิตเพื่อให้ครบโครงสร้าง 18 หน่วยกิตตามที่หลักสูตรกำหนด หรือ' },
                 { type: 'info', text: '3.2 เลือกศึกษาจากวิชาของสาขาวิชาใดก็ได้ที่เปิดสอนในมหาวิทยาลัยธรรมศาสตร์ รวมไม่เกิน 4 คณะ ไม่น้อยกว่า 18 หน่วยกิต ทั้งนี้ นักศึกษาไม่สามารถนำรายวิชาในหลักสูตรวิชาศึกษาทั่วไปฉบับ พ.ศ. 2566 ที่เป็นรหัสระดับ 100 ไปนับเป็นวิชาโทหรือวิชาเลือก' },
+
                 { type: 'header', title: 'วิชาเลือกเสรี (6 หน่วยกิต)' },
                 { type: 'info', text: 'เลือกศึกษาวิชาใดก็ได้ที่เปิดสอนในมหาวิทยาลัยธรรมศาสตร์เป็นวิชาเลือกเสรีจำนวนอย่างน้อย 6 หน่วยกิต ยกเว้น รายวิชาในหลักสูตรวิชาศึกษาทั่วไปฉบับ พ.ศ. 2566 ที่เป็นรหัสระดับ 100 ไปนับเป็นวิชาเลือกเสรี' }
             ];
+            
             const table242Data = {
                 "วิชาศึกษาทั่วไป": ["จำนวนหน่วยกิตรวม 30 หน่วยกิต", "เนื้อหาวิชามีความทันสมัย", "เนื้อหาวิชาสามารถนำไปปรับใช้ในชีวิตประจำวัน", "เนื้อหาวิชาสนับสนุนจุดมุ่งหมายของหลักสูตร"],
                 "วิชาเฉพาะ": ["จำนวนหน่วยกิตรวม 84 หน่วยกิต", "วิชาแกนคณะ 12 หน่วยกิต", "วิชาเฉพาะในสาขา- กลุ่มวิชาบังคับ 42 หน่วยกิต", "วิชาเฉพาะในสาขา- กลุ่มวิชาบังคับเลือก 30 หน่วยกิต", "วิชาเฉพาะในสาขา มีความทันสมัย", "วิชาเฉพาะในสาขา มีความสอดคล้องกับตลาดแรงงาน", "สัดส่วนระหว่างวิชาเฉพาะในคณะ กับวิชาเฉพาะในสาขา", "สัดส่วนระหว่างวิชาบังคับกับวิชาบังคับเลือก"],
@@ -216,10 +309,11 @@
                 "วิชาเลือกเสรี": ["จำนวนหน่วยกิตรวม 6 หน่วยกิต", "ความทันสมัย", "ความสอดคล้องกับตลาดแรงงาน"],
                 "โครงสร้างหลักสูตร": ["หน่วยกิตรวมตลอดหลักสูตรไม่น้อยกว่า 138 หน่วยกิต", "สัดส่วนวิชาศึกษาทั่วไป วิชาเฉพาะ วิชาโท และเลือกเสรี", "โครงสร้างและรายวิชาสอดคล้องกับจุดมุ่งหมาย", "ความชัดเจนของอัตลักษณ์/ความแตกต่างจากสถาบันอื่น"]
             };
+
             const options3Point = [{ text: 'เหมาะสม', value: '3' }, { text: 'ควรปรับปรุง', value: '2' }, { text: 'ไม่มีความเห็น', value: '1' }];
 
-            // URL Apps Script ของคุณ (ใช้ตัวที่ให้มา)
-            const scriptURL = 'https://script.google.com/macros/s/AKfycbwQvcRyFoBsGuL3szxvhi2nbiX_3KVceWSr4C0CEMzQhdUVVN_WDSoN6IoFtsOLOvs5Iw/exec';
+            // !!! IMPORTANT !!! PASTE YOUR GOOGLE APPS SCRIPT URL HERE
+            const scriptURL = 'https://script.google.com/macros/s/AKfycbyJnHGp_64YazgIKAw4nTgKIiPuUxS4mh5sJyc2tEaaHf17U3xeI1tN5pzF8Jp0-W8Ycw/exec';
 
             let currentPart = 1;
             const totalParts = 3;
@@ -231,9 +325,13 @@
             const form = document.getElementById('surveyForm');
             const thankYouMessage = document.getElementById('thankYouMessage');
             const submissionStatus = document.getElementById('submissionStatus');
-            const navButtons = document.getElementById('navButtons');
+            const analysisSection = document.getElementById('analysisSection');
+            const analyzeBtn = document.getElementById('analyzeBtn');
+            const analysisResult = document.getElementById('analysisResult');
+            const loadingIndicator = document.getElementById('loadingIndicator');
+            let allSuggestions = '';
 
-            // สร้างส่วนคำถาม 2.x (รวม 2.4 ตาราง)
+            // --- Populate Part 2 ---
             const part2Container = document.getElementById('part2-questions-container');
             part2Questions.forEach(q => {
                 if (q.id === '2.4') {
@@ -243,24 +341,24 @@
                             <div class="p-4 border rounded-md">
                                 <h4 class="font-semibold text-lg mb-2">2.4.1 รายวิชาและหน่วยกิตในหลักสูตร</h4>
                                 <div id="table-241-container"></div>
-                                <label for="suggestion_2_4_1" class="font-semibold mt-4 block"> 2.4.1 ความเห็นเพิ่มเติม (หากมีรายวิชาที่ท่านเลือกว่าปรับปรุง โปรดระบุว่าควรปรับปรุงอย่างไร)</label>
+                                <label for="suggestion_2_4_1" class="font-semibold mt-4 block">ความเห็นเพิ่มเติม (2.4.1)</label>
                                 <textarea id="suggestion_2_4_1" name="suggestion_2_4_1" rows="3" class="mt-2 w-full p-2 border rounded-md"></textarea>
                             </div>
                             <div class="p-4 border rounded-md mt-6">
                                 <h4 class="font-semibold text-lg mb-2">2.4.2 โครงสร้างองค์ประกอบจำนวนหน่วยกิต</h4>
                                 <div id="table-242-container"></div>
-                                <label for="suggestion_2_4_2" class="font-semibold mt-4 block"> 2.4.2 ความเห็นเพิ่มเติม (โปรดระบุว่าควรปรับปรุงอย่างไร) </label>
+                                <label for="suggestion_2_4_2" class="font-semibold mt-4 block">ความเห็นเพิ่มเติม (2.4.2)</label>
                                 <textarea id="suggestion_2_4_2" name="suggestion_2_4_2" rows="3" class="mt-2 w-full p-2 border rounded-md"></textarea>
                             </div>
                         </div>
                     `);
                 } else {
-                    part2Container.insertAdjacentHTML('beforeend', `
+                     part2Container.insertAdjacentHTML('beforeend', `
                         <div class="space-y-2 suggestion-group">
                             <h3 class="section-subheader">${q.id} ${q.title}</h3>
                             <div class="flex items-center space-x-4 mt-2">
                                 <label><input type="radio" name="suggestion_type_${q.id}" value="no_suggestion" class="form-radio" checked> ไม่มีประเด็นเสนอแนะ</label>
-                                <label><input type="radio" name="suggestion_type_${q.id}" value="has_suggestion" class="form-radio"> มีประเด็นเสนอแนะ (โปรดระบุว่า ปรับปรุงอย่างไร) </label>
+                                <label><input type="radio" name="suggestion_type_${q.id}" value="has_suggestion" class="form-radio"> มีประเด็นเสนอแนะ</label>
                             </div>
                             <div class="suggestion-box">
                                 <textarea name="suggestion_text_${q.id}" rows="3" class="w-full p-2 border rounded-md"></textarea>
@@ -270,7 +368,6 @@
                 }
             });
 
-            // เติมตาราง 2.4.1
             const table241Container = document.getElementById('table-241-container');
             if (table241Container) {
                 let table241Html = `<div class="border rounded-lg overflow-hidden"><div class="rating-table-row font-bold bg-gray-50"><div class="pl-2">ประเด็น</div><div>หน่วยกิต</div><div>ระดับความคิดเห็น</div></div>`;
@@ -296,89 +393,125 @@
                 table241Container.innerHTML = table241Html + `</div>`;
             }
 
-            // เติมตาราง 2.4.2
             const table242Container = document.getElementById('table-242-container');
             if (table242Container) {
                 let table242Html = `<div class="border rounded-lg overflow-hidden"><div class="rating-table-row font-bold bg-gray-50"><div class="pl-2">ประเด็น</div><div class="col-span-2">ระดับความคิดเห็น</div></div>`;
                 Object.entries(table242Data).forEach(([group, items]) => {
-                    table242Html += `<div class="font-bold bg-gray-100 p-2 col-span-3">${group}</div>`;
-                    items.forEach((item, index) => {
+                     table242Html += `<div class="font-bold bg-gray-100 p-2 col-span-3">${group}</div>`;
+                     items.forEach((item, index) => {
                         const name = `table242_${group.replace(/[^a-zA-Z0-9]/g, '')}_${index}`;
                         table242Html += `
                             <div class="rating-table-row">
                                 <div class="pl-4">${item}</div>
                                 <div class="col-span-2">
                                     <select name="${name}" class="w-full p-2 border rounded-md">
-                                        ${options3Point.map(opt => `<option value="${opt.value}">${opt.text}</option>`).join('')}
+                                         ${options3Point.map(opt => `<option value="${opt.value}">${opt.text}</option>`).join('')}
                                     </select>
                                 </div>
                             </div>
                         `;
-                    });
+                     });
                 });
                 table242Container.innerHTML = table242Html + `</div>`;
             }
 
-            // แสดง/ซ่อนกล่องข้อเสนอแนะ
-            document.addEventListener('change', (e) => {
-                if (e.target.matches('.suggestion-group input[type="radio"]')) {
-                    const box = e.target.closest('.suggestion-group').querySelector('.suggestion-box');
-                    if (box) box.style.display = (e.target.value === 'has_suggestion') ? 'block' : 'none';
-                }
+            document.querySelectorAll('.suggestion-group input[type="radio"]').forEach(radio => {
+                radio.addEventListener('change', event => {
+                    const box = event.target.closest('.suggestion-group').querySelector('.suggestion-box');
+                    if (event.target.value === 'has_suggestion') {
+                        box.style.display = 'block';
+                    } else {
+                        box.style.display = 'none';
+                    }
+                });
             });
 
-            // นำทาง + แถบความคืบหน้า
             function showPart(partNumber) {
                 parts.forEach(part => part.classList.add('hidden'));
                 document.getElementById(`part${partNumber}`).classList.remove('hidden');
                 updateButtons(partNumber);
                 progressBar.style.width = `${(partNumber / totalParts) * 100}%`;
             }
+
             function updateButtons(partNumber) {
                 prevBtn.style.visibility = (partNumber === 1) ? 'hidden' : 'visible';
                 nextBtn.classList.toggle('hidden', partNumber === totalParts);
                 submitBtn.classList.toggle('hidden', partNumber !== totalParts);
             }
+
             nextBtn.addEventListener('click', () => { if (currentPart < totalParts) showPart(++currentPart); window.scrollTo(0, 0); });
             prevBtn.addEventListener('click', () => { if (currentPart > 1) showPart(--currentPart); window.scrollTo(0, 0); });
-
-            // ส่งฟอร์ม (CORS ปกติ + รองรับ JSON/text)
-            form.addEventListener('submit', async (e) => {
+            
+            form.addEventListener('submit', (e) => {
                 e.preventDefault();
+                if (scriptURL === 'YOUR_GOOGLE_APPS_SCRIPT_URL_HERE') {
+                    submissionStatus.textContent = 'ข้อผิดพลาด: กรุณาใส่ URL ของ Google Apps Script ในโค้ดก่อน';
+                    submissionStatus.className = 'text-center p-4 my-4 rounded-md bg-red-100 text-red-800';
+                    submissionStatus.classList.remove('hidden');
+                    return;
+                }
                 submitBtn.disabled = true;
                 submitBtn.textContent = 'กำลังส่ง...';
                 submitBtn.classList.add('opacity-50');
                 
-                try {
-                    const res = await fetch(scriptURL, { method: 'POST', body: new FormData(form), mode: 'cors' });
-                    let data = null;
-                    const text = await res.text();
-                    try { data = JSON.parse(text); } catch { data = { status: res.ok ? 'success' : 'error', raw: text }; }
-
-                    if (data.status === 'success' || res.ok) {
-                        // ซ่อนส่วนฟอร์ม แสดงขอบคุณ
-                        document.querySelectorAll('.survey-part').forEach(p => p.classList.add('hidden'));
-                        if (navButtons) navButtons.classList.add('hidden');
-                        const progressWrap = document.getElementById('progress-bar')?.parentElement;
-                        if (progressWrap) progressWrap.classList.add('hidden');
-                        submissionStatus.classList.add('hidden');
+                fetch(scriptURL, { method: 'POST', body: new FormData(form)})
+                    .then(response => response.json())
+                    .then(data => {
+                        console.log('Success!', data);
+                        allSuggestions = [...form.querySelectorAll('textarea')].map(ta => ta.value.trim() ? `หัวข้อ: ${document.querySelector(`label[for="${ta.id}"]`)?.textContent || 'ข้อเสนอแนะ'}\nเนื้อหา: ${ta.value.trim()}` : '').filter(Boolean).join('\n\n---\n\n');
+                        parts.forEach(part => part.classList.add('hidden'));
+                        document.querySelector('.flex.justify-between').classList.add('hidden');
+                        document.getElementById('progress-bar').parentElement.classList.add('hidden');
                         thankYouMessage.classList.remove('hidden');
+                        if (allSuggestions) analysisSection.classList.remove('hidden');
                         window.scrollTo(0, 0);
-                        form.reset();
-                    } else {
-                        throw new Error(data.message || 'บันทึกไม่สำเร็จ');
-                    }
-                } catch (err) {
-                    submissionStatus.textContent = 'เกิดข้อผิดพลาดในการส่งข้อมูล: ' + err.message;
-                    submissionStatus.className = 'text-center p-4 my-4 rounded-md bg-red-100 text-red-800';
-                    submissionStatus.classList.remove('hidden');
-                    submitBtn.disabled = false;
-                    submitBtn.textContent = 'ส่งแบบสอบถาม';
-                    submitBtn.classList.remove('opacity-50');
-                }
+                    })
+                    .catch(error => {
+                        console.error('Error!', error.message);
+                        submissionStatus.textContent = 'เกิดข้อผิดพลาดในการส่งข้อมูล กรุณาตรวจสอบการตั้งค่า Google Sheet และลองใหม่อีกครั้ง';
+                        submissionStatus.className = 'text-center p-4 my-4 rounded-md bg-red-100 text-red-800';
+                        submissionStatus.classList.remove('hidden');
+                        submitBtn.disabled = false;
+                        submitBtn.textContent = 'ส่งแบบสอบถาม';
+                        submitBtn.classList.remove('opacity-50');
+                    });
             });
 
-            // เริ่มต้น
+            analyzeBtn.addEventListener('click', async () => {
+                loadingIndicator.classList.remove('hidden');
+                analysisResult.classList.add('hidden');
+                analyzeBtn.disabled = true;
+                analyzeBtn.classList.add('opacity-50');
+                const prompt = `คุณคือผู้เชี่ยวชาญด้านการพัฒนาหลักสูตรการศึกษา โปรดวิเคราะห์และสรุปข้อเสนอแนะจากผู้ทรงคุณวุฒิสำหรับหลักสูตรภูมิศาสตร์ โดยจัดระเบียบคำตอบตามหัวข้อ: 1. **สรุปประเด็นสำคัญ**, 2. **จุดแข็งของหลักสูตร**, 3. **ประเด็นที่ควรพิจารณาเพื่อการปรับปรุง**, 4. **ข้อเสนอแนะเชิงปฏิบัติ 2-3 ข้อ**. ข้อมูล: --- ${allSuggestions} ---`;
+                try {
+                    const payload = { contents: [{ role: "user", parts: [{ text: prompt }] }] };
+                    const apiKey = "";
+                    const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-preview-05-20:generateContent?key=${apiKey}`;
+                    let response;
+                    for (let i = 0, delay = 1000; i < 5; i++, delay *= 2) {
+                        try {
+                            const res = await fetch(apiUrl, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(payload) });
+                            if (res.ok) { response = res; break; }
+                            if (res.status === 429 || res.status >= 500) await new Promise(r => setTimeout(r, delay));
+                            else throw new Error(`API request failed with status ${res.status}`);
+                        } catch (error) { if (i === 4) throw error; await new Promise(r => setTimeout(r, delay)); }
+                    }
+                    if (!response) throw new Error('API request failed after multiple retries.');
+                    const result = await response.json();
+                    const text = result.candidates?.[0]?.content?.parts?.[0]?.text;
+                    if (text) {
+                        analysisResult.innerHTML = text.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>').replace(/\*/g, '<br> &bull; ').replace(/\n/g, '<br>');
+                    } else { throw new Error('Invalid API response structure.'); }
+                } catch (error) {
+                    console.error('Error calling Gemini API:', error);
+                    analysisResult.innerHTML = `<p class="text-red-500">เกิดข้อผิดพลาดในการเชื่อมต่อกับ AI: ${error.message}</p>`;
+                } finally {
+                    loadingIndicator.classList.add('hidden');
+                    analysisResult.classList.remove('hidden');
+                    analyzeBtn.disabled = false;
+                    analyzeBtn.classList.remove('opacity-50');
+                }
+            });
             showPart(currentPart);
         });
     </script>
