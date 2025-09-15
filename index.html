@@ -312,8 +312,8 @@
 
             const options3Point = [{ text: 'เหมาะสม', value: '3' }, { text: 'ควรปรับปรุง', value: '2' }, { text: 'ไม่มีความเห็น', value: '1' }];
 
-            // !!! IMPORTANT !!! PASTE YOUR GOOGLE APPS SCRIPT URL HERE
-            const scriptURL = 'https://script.google.com/macros/s/AKfycbyJnHGp_64YazgIKAw4nTgKIiPuUxS4mh5sJyc2tEaaHf17U3xeI1tN5pzF8Jp0-W8Ycw/exec';
+            // --- FIX: Updated the scriptURL to your correct deployment URL ---
+            const scriptURL = 'https://script.google.com/macros/s/AKfycbyCq_k8ds6cIQo-gaAs6cahjMDgVhLuZGUiCM_PNvOSnyi28IYFMpNcSkz98W6BHHDgDg/exec';
 
             let currentPart = 1;
             const totalParts = 3;
@@ -444,12 +444,6 @@
             
             form.addEventListener('submit', (e) => {
                 e.preventDefault();
-                if (scriptURL === 'YOUR_GOOGLE_APPS_SCRIPT_URL_HERE') {
-                    submissionStatus.textContent = 'ข้อผิดพลาด: กรุณาใส่ URL ของ Google Apps Script ในโค้ดก่อน';
-                    submissionStatus.className = 'text-center p-4 my-4 rounded-md bg-red-100 text-red-800';
-                    submissionStatus.classList.remove('hidden');
-                    return;
-                }
                 submitBtn.disabled = true;
                 submitBtn.textContent = 'กำลังส่ง...';
                 submitBtn.classList.add('opacity-50');
@@ -458,17 +452,21 @@
                     .then(response => response.json())
                     .then(data => {
                         console.log('Success!', data);
-                        allSuggestions = [...form.querySelectorAll('textarea')].map(ta => ta.value.trim() ? `หัวข้อ: ${document.querySelector(`label[for="${ta.id}"]`)?.textContent || 'ข้อเสนอแนะ'}\nเนื้อหา: ${ta.value.trim()}` : '').filter(Boolean).join('\n\n---\n\n');
-                        parts.forEach(part => part.classList.add('hidden'));
-                        document.querySelector('.flex.justify-between').classList.add('hidden');
-                        document.getElementById('progress-bar').parentElement.classList.add('hidden');
-                        thankYouMessage.classList.remove('hidden');
-                        if (allSuggestions) analysisSection.classList.remove('hidden');
-                        window.scrollTo(0, 0);
+                        if (data.status === 'success') {
+                            allSuggestions = [...form.querySelectorAll('textarea')].map(ta => ta.value.trim() ? `หัวข้อ: ${document.querySelector(`label[for="${ta.id}"]`)?.textContent || 'ข้อเสนอแนะ'}\nเนื้อหา: ${ta.value.trim()}` : '').filter(Boolean).join('\n\n---\n\n');
+                            parts.forEach(part => part.classList.add('hidden'));
+                            document.querySelector('.flex.justify-between').classList.add('hidden');
+                            document.getElementById('progress-bar').parentElement.classList.add('hidden');
+                            thankYouMessage.classList.remove('hidden');
+                            if (allSuggestions) analysisSection.classList.remove('hidden');
+                            window.scrollTo(0, 0);
+                        } else {
+                            throw new Error(data.message || 'Unknown error from Google Apps Script');
+                        }
                     })
                     .catch(error => {
                         console.error('Error!', error.message);
-                        submissionStatus.textContent = 'เกิดข้อผิดพลาดในการส่งข้อมูล กรุณาตรวจสอบการตั้งค่า Google Sheet และลองใหม่อีกครั้ง';
+                        submissionStatus.textContent = 'เกิดข้อผิดพลาดในการส่งข้อมูล: ' + error.message + ' กรุณาตรวจสอบการตั้งค่า Google Sheet และลองใหม่อีกครั้ง';
                         submissionStatus.className = 'text-center p-4 my-4 rounded-md bg-red-100 text-red-800';
                         submissionStatus.classList.remove('hidden');
                         submitBtn.disabled = false;
@@ -517,3 +515,4 @@
     </script>
 </body>
 </html>
+
