@@ -59,6 +59,17 @@
         .rating-table-row:last-child {
             border-bottom: none;
         }
+        .rating-table-row-2col {
+            display: grid;
+            grid-template-columns: 3fr 2fr;
+            gap: 1rem;
+            align-items: center;
+            padding: 0.75rem 0.5rem;
+            border-bottom: 1px solid #e5e7eb;
+        }
+        .rating-table-row-2col:nth-child(even) {
+            background-color: #f9fafb;
+        }
         .rating-table-header {
             font-weight: bold;
             background-color: #f3f4f6;
@@ -92,6 +103,10 @@
         }
         @media (max-width: 768px) {
             .rating-table-row {
+                grid-template-columns: 1fr;
+                gap: 0.5rem;
+            }
+            .rating-table-row-2col {
                 grid-template-columns: 1fr;
                 gap: 0.5rem;
             }
@@ -288,11 +303,19 @@
             ];
             
             const table242Data = {
-                "วิชาศึกษาทั่วไป": ["จำนวนหน่วยกิตรวม 30 หน่วยกิต", "เนื้อหาวิชามีความทันสมัย", "เนื้อหาวิชาสามารถนำไปปรับใช้ในชีวิตประจำวัน", "เนื้อหาวิชาสนับสนุนจุดมุ่งหมายของหลักสูตร"],
-                "วิชาเฉพาะ": ["จำนวนหน่วยกิตรวม 84 หน่วยกิต", "วิชาแกนคณะ 12 หน่วยกิต", "วิชาเฉพาะในสาขา- กลุ่มวิชาบังคับ 42 หน่วยกิต", "วิชาเฉพาะในสาขา- กลุ่มวิชาบังคับเลือก 30 หน่วยกิต", "วิชาเฉพาะในสาขา มีความทันสมัย", "วิชาเฉพาะในสาขา มีความสอดคล้องกับตลาดแรงงาน", "สัดส่วนระหว่างวิชาเฉพาะในคณะ กับวิชาเฉพาะในสาขา", "สัดส่วนระหว่างวิชาบังคับกับวิชาบังคับเลือก"],
-                "วิชาโทหรือวิชาเลือก": ["จำนวนหน่วยกิตรวม 18 หน่วยกิต", "ความทันสมัย", "ความสอดคล้องกับตลาดแรงงาน"],
-                "วิชาเลือกเสรี": ["จำนวนหน่วยกิตรวม 6 หน่วยกิต", "ความทันสมัย", "ความสอดคล้องกับตลาดแรงงาน"],
-                "โครงสร้างหลักสูตร": ["หน่วยกิตรวมตลอดหลักสูตรไม่น้อยกว่า 138 หน่วยกิต", "สัดส่วนวิชาศึกษาทั่วไป วิชาเฉพาะ วิชาโท และเลือกเสรี", "โครงสร้างและรายวิชาสอดคล้องกับจุดมุ่งหมาย", "ความชัดเจนของอัตลักษณ์/ความแตกต่างจากสถาบันอื่น"]
+                "general_education": ["จำนวนหน่วยกิตรวม 30 หน่วยกิต", "เนื้อหาวิชามีความทันสมัย", "เนื้อหาวิชาสามารถนำไปปรับใช้ในชีวิตประจำวัน", "เนื้อหาวิชาสนับสนุนจุดมุ่งหมายของหลักสูตร"],
+                "specific_courses": ["จำนวนหน่วยกิตรวม 84 หน่วยกิต", "วิชาแกนคณะ 12 หน่วยกิต", "วิชาเฉพาะในสาขา- กลุ่มวิชาบังคับ 42 หน่วยกิต", "วิชาเฉพาะในสาขา- กลุ่มวิชาบังคับเลือก 30 หน่วยกิต", "วิชาเฉพาะในสาขา มีความทันสมัย", "วิชาเฉพาะในสาขา มีความสอดคล้องกับตลาดแรงงาน", "สัดส่วนระหว่างวิชาเฉพาะในคณะ กับวิชาเฉพาะในสาขา", "สัดส่วนระหว่างวิชาบังคับกับวิชาบังคับเลือก"],
+                "minor_elective": ["จำนวนหน่วยกิตรวม 18 หน่วยกิต", "ความทันสมัย", "ความสอดคล้องกับตลาดแรงงาน"],
+                "free_elective": ["จำนวนหน่วยกิตรวม 6 หน่วยกิต", "ความทันสมัย", "ความสอดคล้องกับตลาดแรงงาน"],
+                "curriculum_structure": ["หน่วยกิตรวมตลอดหลักสูตรไม่น้อยกว่า 138 หน่วยกิต", "สัดส่วนวิชาศึกษาทั่วไป วิชาเฉพาะ วิชาโท และเลือกเสรี", "โครงสร้างและรายวิชาสอดคล้องกับจุดมุ่งหมาย", "ความชัดเจนของอัตลักษณ์/ความแตกต่างจากสถาบันอื่น"]
+            };
+
+            const groupLabels = {
+                "general_education": "วิชาศึกษาทั่วไป",
+                "specific_courses": "วิชาเฉพาะ",
+                "minor_elective": "วิชาโทหรือวิชาเลือก",
+                "free_elective": "วิชาเลือกเสรี",
+                "curriculum_structure": "โครงสร้างหลักสูตร"
             };
 
             const options3Point = [{ text: 'เหมาะสม', value: '3' }, { text: 'ควรปรับปรุง', value: '2' }, { text: 'ไม่มีความเห็น', value: '1' }];
@@ -375,22 +398,22 @@
 
             const table242Container = document.getElementById('table-242-container');
             if (table242Container) {
-                let table242Html = `<div class="border rounded-lg overflow-hidden"><div class="rating-table-row font-bold bg-gray-50"><div class="pl-2">ประเด็น</div><div class="col-span-2">ระดับความคิดเห็น</div></div>`;
+                let table242Html = `<div class="border rounded-lg overflow-hidden"><div class="rating-table-row-2col font-bold bg-gray-50"><div class="pl-2">ประเด็น</div><div>ระดับความคิดเห็น</div></div>`;
                 Object.entries(table242Data).forEach(([group, items]) => {
-                     table242Html += `<div class="font-bold bg-gray-100 p-2 col-span-3">${group}</div>`;
-                     items.forEach((item, index) => {
-                        const name = `table242_${group.replace(/[^a-zA-Z0-9]/g, '')}_${index}`;
+                    table242Html += `<div class="rating-table-header">${groupLabels[group]}</div>`;
+                    items.forEach((item, index) => {
+                        const name = `table242_${group}_${index}`;
                         table242Html += `
-                            <div class="rating-table-row">
+                            <div class="rating-table-row-2col">
                                 <div class="pl-4">${item}</div>
-                                <div class="col-span-2">
+                                <div>
                                     <select name="${name}" class="w-full p-2 border rounded-md">
-                                         ${options3Point.map(opt => `<option value="${opt.value}">${opt.text}</option>`).join('')}
+                                        ${options3Point.map(opt => `<option value="${opt.value}">${opt.text}</option>`).join('')}
                                     </select>
                                 </div>
                             </div>
                         `;
-                     });
+                    });
                 });
                 table242Container.innerHTML = table242Html + `</div>`;
             }
